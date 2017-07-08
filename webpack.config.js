@@ -1,6 +1,15 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+var isProd = process.env.NODE_ENV === 'production';
+var cssDev = ['style-loader','css-loader','sass-loader'];
+var cssProd = ExtractTextPlugin.extract({
+  fallback: 'style-loader',
+  use: ['css-loader','sass-loader'],
+});
+var cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = {
   entry: {
@@ -15,11 +24,7 @@ module.exports = {
     rules: [
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader','sass-loader'],
-          // filename: '[name].[contenthash].css'
-        })
+        use: cssConfig,
       },
       { 
         test: /\.js$/,
@@ -29,6 +34,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       hash: true,
@@ -37,8 +43,16 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'app.css',
       allChunks: true,
+      disable: !isProd,
     }),
-  ]
-
-
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    publicPath: '/',
+    port: 4200,
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
+    stats: 'errors-only',
+  }
 }
