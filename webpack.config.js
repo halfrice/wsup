@@ -13,13 +13,14 @@ var cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = {
   entry: {
+    vendor: ['jquery','lodash'],
     bundle: './src/app.js',
     // something: 'webpack-dev-server/client?http://localhost:4200',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // filename: '[name].[chunkhash].js'
-    filename: 'app.bundle.js'
+    filename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js'
+    // filename: 'app.bundle.js'
   },
   module: {
     rules: [
@@ -48,8 +49,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       hash: true,
@@ -60,7 +59,17 @@ module.exports = {
       allChunks: true,
       disable: !isProd,
     }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor', 'manifest']
+    }),
   ],
+
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     // publicPath: '/',
