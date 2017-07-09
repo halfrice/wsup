@@ -13,13 +13,19 @@ var cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = {
   entry: {
-    vendor: ['jquery','lodash'],
+    vendor: [
+      'jquery',
+      'lodash',
+      'bootstrap-loader',
+      'tether',
+      'font-awesome-sass-loader!./font-awesome.config.js',
+    ],
     bundle: './src/app.js',
     // something: 'webpack-dev-server/client?http://localhost:4200',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js'
+    filename: isProd ? '[name].[hash].js' : '[name].[hash].js'
     // filename: 'app.bundle.js'
   },
   module: {
@@ -44,6 +50,7 @@ module.exports = {
           'image-webpack-loader'
         ]
       },
+      { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports-loader?jQuery=jquery' },
       { test: /\.(woff2?|svg)$/, loader: 'url-loader?limit=10000' },
       { test: /\.(ttf|eot)$/, loader: 'file-loader' },
     ]
@@ -60,8 +67,22 @@ module.exports = {
       disable: !isProd,
     }),
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      Tether: "tether",
+      "window.Tether": "tether",
+      Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
+      Button: "exports-loader?Button!bootstrap/js/dist/button",
+      Carousel: "exports-loader?Carousel!bootstrap/js/dist/carousel",
+      Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse",
+      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+      Modal: "exports-loader?Modal!bootstrap/js/dist/modal",
+      Popover: "exports-loader?Popover!bootstrap/js/dist/popover",
+      Scrollspy: "exports-loader?Scrollspy!bootstrap/js/dist/scrollspy",
+      Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
+      Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
+      Util: "exports-loader?Util!bootstrap/js/dist/util",
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
