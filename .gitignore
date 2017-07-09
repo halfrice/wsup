@@ -63,4 +63,5 @@ package-lock.json
 
 # MY SHIT
 dist
+src/imgs/
 .babelrc
