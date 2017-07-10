@@ -24,7 +24,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: isProd ? '[name].[hash].js' : '[name].[hash].js'
+    filename: '[name].[hash].js'
     // filename: 'app.bundle.js'
   },
   module: {
