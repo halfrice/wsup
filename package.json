@@ -7,7 +7,7 @@
     "clean": "rimraf ./dist/*",
     "dev": "webpack-dev-server",
     "prod": "npm run clean && NODE_ENV=production webpack -p",
-    "postcss-config-install": "./postcss-config-install.sh",
+    "postcss-config-install": "./postcss-config-install.sh"
   },
   "keywords": [],
   "author": "",
