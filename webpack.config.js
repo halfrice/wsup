@@ -21,7 +21,6 @@ module.exports = {
       'font-awesome-sass-loader!./font-awesome.config.js',
     ],
     bundle: './src/app.js',
-    // something: 'webpack-dev-server/client?http://localhost:4200',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
