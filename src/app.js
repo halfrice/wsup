@@ -25,7 +25,7 @@ const css = require('./app.scss');
     // $('body').scrollspy({target: '.navbar'});
     
     // SLIDER
-    $('.slider ul#pics-list').width(sliderWidth*totalSlides);
+    $('.slider ul#slider-list').width(sliderWidth*totalSlides);
     $('#next').click(function(){
       slideRight();
     });
@@ -95,7 +95,7 @@ const css = require('./app.scss');
     if (sliderPos <= -1) {
       sliderPos = totalSlides-1;
     }
-    $('.slider ul#pics-list').css('left', -((sliderWidth*totalSlides)*sliderPos));
+    $('.slider ul#slider-list').css('left', -((sliderWidth*totalSlides)*sliderPos));
     countPics();
     pagination();
   }
@@ -104,7 +104,7 @@ const css = require('./app.scss');
     if (sliderPos == totalSlides) {
       sliderPos = 0;
     }
-    $('.slider ul#pics-list').css('left', -((sliderWidth*totalSlides)*sliderPos));
+    $('.slider ul#slider-list').css('left', -((sliderWidth*totalSlides)*sliderPos));
     countPics();
     pagination();
   }
