@@ -36,6 +36,9 @@ NAVBAR
   background: #000 !important;
   transition-duration: 0.42s;
   opacity: 0.8;
+  a {
+    color: deeppink;
+  }
 }
 .navbar-scroll {
   transform: translateY(-52px);
