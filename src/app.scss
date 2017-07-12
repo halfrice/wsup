@@ -27,7 +27,7 @@ h1 {
   letter-spacing: .15em;
   position: relative;
   top: 40%;
-  opacity: .7;
+  opacity: .9;
   
   -ms-box-orient: horizontal;
   display: -webkit-box;
@@ -110,7 +110,7 @@ SLIDER
   background-size: cover;
 }
 .image:nth-of-type(2) {
-  background: url('./imgs/bg4.jpg') no-repeat center center;
+  background: url('./imgs/bg5.jpg') no-repeat center center;
   background-size: cover;
 }
 .image:nth-of-type(3) {
@@ -118,9 +118,48 @@ SLIDER
   background-size: cover;
 }
 .image:nth-of-type(4) {
-  background: url('./imgs/bg4.jpg') no-repeat center center;
+  background: url('./imgs/bg6.jpg') no-repeat center center;
   background-size: cover;
 }
+
+.slider-pagination {
+  position: absolute;
+  width: 100%;
+  bottom: 4%;
+  margin-left: auto; 
+  margin-right: auto;
+  height:15px;
+  text-align:center;
+  ul {
+    width:100%;
+    li{
+      margin: 0 4px;
+      display: inline-block;
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:#fff;
+      opacity:0.5;
+      position:relative;
+      top:0;
+      &.active{
+        width:12px;
+        height:12px;
+        top:3px;
+        opacity:1;
+        box-shadow:rgba(0,0,0,0.1) 1px 1px 0px; 
+      }
+    }
+  }
+}
+.slider-counter {
+  color: #fff;
+  top: 60px; 
+  right: 40px;
+  width: auto;
+  position: absolute;
+}
+
 // .slider {
 //   // border: blue 1px solid;
 //   position: relative;
@@ -244,6 +283,7 @@ SLIDER
 //   -ms-transition: all 0.6s cubic-bezier(1,.01,.32,1);
 //   transition: all 0.6s cubic-bezier(1,.01,.32,1); 
 // }
+
 /*********************************************************************
 SKILLS
 *********************************************************************/
@@ -252,15 +292,14 @@ SKILLS
   background: #100606;
   height: 800px;
 }
-
 section {
   margin: 100px auto 100px auto;
   height: 500px;
   width: 600px;
-  background: tomato;
+  background: magenta;
   text-align: center;
   padding-top: 300px;
-  color: white;
+  color: black;
   font-size: 4em;
   overflow: hidden; 
 }
