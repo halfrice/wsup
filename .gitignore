@@ -64,5 +64,6 @@ package-lock.json
 # MY SHIT
 dist
 src/imgs/
+src/fonts/
 .babelrc
 .bootstraprc
