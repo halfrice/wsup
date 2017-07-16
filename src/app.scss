@@ -2,8 +2,12 @@
   src: url('https://fonts.gstatic.com/s/lato/v11/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2');
   font-family: 'Lato-Regular';
 }
+// @font-face {
+//   src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/polar.otf');
+//   font-family: 'Polar';
+// }
 $lato: 'Lato', Helvetica, Arial, sans-serif;
-$polar: 'Lato' Helvetica, Arial, sans-serif;
+$polar: 'Lato', Helvetica, Arial, sans-serif;
 $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 @mixin mediaMaxWidth($w) {
   @media (max-width: $w) {
@@ -16,7 +20,7 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
   padding: 0;
 }
 html, body {
-  font-size: 62.5%;
+  font-size: 1em;
   height: 100%;
 }
 body {
@@ -25,22 +29,6 @@ body {
 svg {
   display: block;
   overflow: visible;
-}
-
-// html, body{
-//   -moz-osx-font-smoothing: antialiased;
-//   -webkit-font-smoothing: antialiased;
-//   margin: 0;
-//   padding: 0;
-//   height: 100%;
-//   background: #333;
-//   font-size: 1.08em;
-//   font-family: $lato;
-// }
-
-.container-fluid {
-  margin: 0px;
-  padding: 0px;
 }
 
 /*********************************************************************
@@ -61,47 +49,111 @@ NAVBAR
 .navbar-brand {
   color: deeppink !important;
 }
+
 /*********************************************************************
 SLIDER
 *********************************************************************/
-// .slider-container {
-//   padding: 0;
-//   height: 100%;
-//   width: 100%;
-// }
-
-.x-container {
+.slider-container {
   position: relative;
   height: 100%;
-  width: 100%;
   user-select: none;
   cursor: all-scroll;
+  overflow: hidden;
+}
+.slider-control {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  width: 12%;
+  height: 100%;
+  transition: opacity 0.3s;
+  will-change: opacity;
+  opacity: 0;
+
+  &.inactive:hover {
+    cursor: auto;
+  }
+
+  &:not(.inactive):hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  &.left {
+    left: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 100%);
+  }
+  &.right {
+    right: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 100%);
+  }
 }
 
-.x-slider {
+.slider-pagi {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  font-size: 0;
+  list-style-type: none;
+  
+  &__elem {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.25rem;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    cursor: pointer;
+    
+    &:before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0.6rem;
+      height: 0.6rem;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+      transform: translate(-50%, -50%) scale(0);
+    }
+    
+    &.active:before,
+    &:hover:before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+.slider {
+  z-index: 1;
   position: relative;
   height: 100%;
-  z-index: 1;
 
   &.animating {
-    transform: 0.5s;
+    transition: transform 0.5s;
     will-change: transform;
 
     .slide__bg {
-      transform: 0.5s;
+      transition: transform 0.5s;
       will-change: transform;
     }
   }
 }
 .slide {
   position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
-  top: 0;
   overflow: hidden;
 
   &.active {
-    .slide__overlay, .slide__text {
+
+    .slide__overlay,
+    .slide__text{
       opacity: 1;
       transform: translateX(0);
     }
@@ -121,17 +173,16 @@ SLIDER
 
     .slide__bg {
       left: 0;
-      background-image: url('./imgs/bg.png');
+      background-image: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-523721.jpg');
     }
 
     .slide__overlay-path {
-      fill: rgba(0,0,0,0.8);
+      fill: rgb(0,0,0);
     }
 
     @include mediaMaxWidth(991px) {
       .slide__text {
         background-color: rgba(0,0,0,0.8);
-        // background-color: rgba(233, 156, 126, 0.8);
       } 
     }
   }
@@ -140,17 +191,16 @@ SLIDER
 
     .slide__bg {
       left: -50%;
-      background-image: url('./imgs/bg5.jpg');
+      background-image: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-523721.jpg');
     }
 
     .slide__overlay-path {
-      fill: rgba(0,0,0,0.8);
+      fill: rgb(0,0,0);
     }
 
     @include mediaMaxWidth(991px) {
       .slide__text {
         background-color: rgba(0,0,0,0.8);
-        // background-color: rgba(225, 204, 174, 0.8);
       } 
     }
   }
@@ -159,18 +209,16 @@ SLIDER
 
     .slide__bg {
       left: -100%;
-      background-image: url('./imgs/bg3.jpg');
+      background-image: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-523721.jpg');
     }
 
     .slide__overlay-path {
-      fill: rgba(0,0,0,0.8);
-      // fill: rgb(173, 197, 205);
+      fill: rgb(0,0,0);
     }
 
     @include mediaMaxWidth(991px) {
       .slide__text {
         background-color: rgba(0,0,0,0.8);
-        // background-color: rgba(173, 197, 205, 0.8);
       } 
     }
   }
@@ -179,22 +227,20 @@ SLIDER
 
     .slide__bg {
       left: -150%;
-      background-image: url('./imgs/bg6.jpg');
+      background-image: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-523721.jpg');
     }
 
     .slide__overlay-path {
-      fill: rgba(0,0,0,0.8);
-      // fill: rgb(203, 198, 195);
+      fill: rgb(0,0,0);
     }
 
     @include mediaMaxWidth(991px) {
       .slide__text {
         background-color: rgba(0,0,0,0.8);
-        // background-color: rgba(203, 198, 195, 0.8);
       } 
     }
   }
-  
+
   &__content {
     position: absolute;
     top: 0;
@@ -238,27 +284,27 @@ SLIDER
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 20rem;
+      height: 10rem;
       text-align: center;
       transform: translateY(50%);
       transition: transform 0.5s 0.5s, opacity 0.5s 0.5s;
-      padding: 0 1rem;
+      padding: 0 0.5rem;
     }
 
     &-heading {
-      font-family: $polar;
-      font-size: 2.23rem;
+      font-family: $lato;
+      font-size: 2.5rem;
       margin-bottom: 2rem;
       
       @include mediaMaxWidth(991px) {
-        line-height: 20rem;
-        font-size: 3.5rem;
+        line-height: 10rem;
+        font-size: 1.75rem;
       }
     }
 
     &-desc {
-      font-family: $openSans;
-      font-size: 1.61rem;
+      font-family: $lato;
+      font-size: 0.9rem;
       margin-bottom: 1.5rem;
 
       @include mediaMaxWidth(991px) {
@@ -270,10 +316,10 @@ SLIDER
       z-index: 5;
       display: inline-block;
       position: relative;
-      padding: 0.5rem;
+      padding: 0.25rem;
       cursor: pointer;
-      font-family: $openSans;
-      font-size: 1.34rem;
+      font-family: $lato;
+      font-size: 1.15rem;
       perspective: 1000px;
       
       @include mediaMaxWidth(991px) {
@@ -299,77 +345,6 @@ SLIDER
         transform: rotateX(0);
       }
     }
-  }
-}
-
-.slider-pagi {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  bottom: 2rem;
-  transform: translateX(-50%);
-  font-size: 0;
-  list-style-type: none;
-  
-  &__elem {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    width: 0.23rem;
-    height: 0.23rem;
-    margin: 0 0.5rem;
-    background: #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    
-    &:before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 0.64rem;
-      height: 0.64rem;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform 0.3s;
-      transform: translate(-50%, -50%) scale(0);
-    }
-    
-    &.active:before,
-    &:hover:before {
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-}
-
-.slider-control {
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  width: 12%;
-  height: 100%;
-  transition: opacity 0.3s;
-  will-change: opacity;
-  opacity: 0;
-
-  &.inactive:hover {
-    cursor: auto;
-  }
-
-  &:not(.inactive):hover {
-    opacity: 1;
-    cursor: pointer;
-  }
-
-  &.left {
-    left: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-    // background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 100%);
-  }
-  &.right {
-    right: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
-    // background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 100%);
   }
 }
 
