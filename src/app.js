@@ -87,10 +87,12 @@ const css = require('./app.scss');
     }
 
     function slideLeft() {
+      console.log('inside slideLeft()');
       if (animating) return;
       if (currentSlide > 0) currentSlide--;
     }
     function slideRight() {
+      console.log('inside slideRight()');
       if (animating) return;
       if (currentSlide < numOfSlides) currentSlide++;
     }
@@ -107,8 +109,7 @@ const css = require('./app.scss');
         console.log('mousemove touchmove');
         var x = e.pageX || e.originalEvent.touches[0].pageX;
         diff = (startX - x) / winW * 70;
-        if ((!currentSlide && diff < 0) || 
-            (currentSlide === numOfSlides && diff > 0)) diff /= 2;
+        if ((!currentSlide && diff < 0) || (currentSlide == numOfSlides && diff > 0)) diff /= 2;
         $slider.css("transform", "translate3d("+ (-currentSlide*100 - diff) +"%,0,0)");
         $slideBGs.css("transform", "translate3d("+ (currentSlide*50 + diff/2) +"%,0,0)");
       });
@@ -151,6 +152,7 @@ const css = require('./app.scss');
     });
 
   });
+  // END OF DOCUMENT READY
 
   /*******************************************************************
   APP CONFIG
