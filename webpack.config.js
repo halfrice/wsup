@@ -19,6 +19,7 @@ module.exports = {
       'bootstrap-loader',
       'tether',
       'font-awesome-sass-loader!./font-awesome.config.js',
+      'p5'
     ],
     bundle: './src/app.js',
   },
@@ -66,6 +67,9 @@ module.exports = {
       disable: !isProd,
     }),
     new webpack.ProvidePlugin({
+      p5: 'p5'
+    }),
+    new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
       "window.jQuery": "jquery",
@@ -86,7 +90,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
+      names: ['vendor']
     }),
   ],
 

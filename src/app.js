@@ -166,5 +166,69 @@ $(document).ready(function() {
     curSlide = $(this).data("page");
     changeSlides();
   });
-  
+
+
+  var p5config = function(p) {
+    var amount = 256;
+    var balls = [];
+    var width = $('.p5-canvas').width();
+    var height = $('.p5-canvas').height();
+    var x = 100; 
+    var y = 100;
+
+    p.setup = function() {
+      p.createCanvas(width,height);
+      p.frameRate(60);
+      for (var i = 0; i < amount; i++) {
+        balls[i] = new Ball();
+      }
+    };
+
+    p.draw = function() {
+      p.background(0,0,0);
+      for (var i =0; i < balls.length; i++) {
+        var ball = balls[i];
+        balls[i].move();
+        // balls[i].show();
+        p.fill(ball.r,ball.g,ball.b);
+        p.ellipse(ball.x,ball.y,ball.d,ball.d);
+      }
+    };
+
+    function Ball() {
+      this.r = 255; // red
+      this.g = 0; // green
+      this.b = 255; // blue
+      this.d = 10; // diameter
+      this.x = Math.random(width); 
+      this.y = Math.random(height);
+      this.speed = Math.random(-4.0,4.0);
+      this.xspeed = Math.random(1,20)*5;
+      this.yspeed = Math.random(1,20)*5;
+      // this.xspeed = map(this.speed,0,20,1,20);
+      // this.yspeed = map(this.speed,0,20,1,20);
+      this.move = function() {
+        if (this.x < 0 || this.x > width) {
+          this.xspeed *= -1;
+        }
+        if (this.y < 0 || this.y > height) {
+          this.yspeed *= -1;
+        }
+        this.x += this.xspeed;
+        this.y += this.yspeed;
+      };
+      this.show = function() {
+        p.fill(this.r,this.g,this.b);
+        ellipse(this.x,this.y,this.d,this.d);
+      };
+    }
+  };
+
+  //var myp5 = new p5(p5config, 'p5-canvas');
+
+
+
 });
+
+
+
