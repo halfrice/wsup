@@ -615,6 +615,11 @@ ABOUT
     font-size: 1.08rem;
     margin-bottom: 1.5rem;
     color: $color;
+
+    @include mediaMaxWidth(575px) {
+      color: deeppink;
+    }
+    
   }
 }
 
@@ -661,16 +666,18 @@ FOOTER
   position: relative;
   margin: 34px 16px 21px 16px;
   padding: 0;
-  background-color: #fff;
+  background-color: #000;
   overflow: hidden;
 }
 .footer {
   display: block;
   min-height: 52px;
   width: 100%;
-  color: #333;
-  font-size: 11px;
+  max-width: 991px;
   line-height: 16px;
+  font-size: 11px;
+  color: $color;
+  margin: 0px auto;
 
   &.row {
   }
@@ -678,7 +685,7 @@ FOOTER
   &-promo {
     margin: 0px 0px 7px 0px;
     padding: 0px 0px 6px 0px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #333;
 
     &-content {
 
@@ -686,11 +693,28 @@ FOOTER
   }
 
   &-legalese {
-    @include mediaMaxWidth(991px) {
-      .slide__text {
-        background-color: rgba(0,0,0,0.8);
-      } 
+    &-links {
+      text-align: center;
+      a {
+        color: #666;
+        padding: 0px 16px;
+        border-right: 1px solid #999;
+      }
+      @include mediaMaxWidth(767px) {
+        text-align: left;
+      }
     }
-
+    &-location {
+      text-align: right;
+      @include mediaMaxWidth(767px) {
+        text-align: left;
+      }
+    }
   }
 }
+
+
+
+
+
+// STUFF
