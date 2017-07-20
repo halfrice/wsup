@@ -52,6 +52,14 @@ svg {
   margin: 0;
   padding: 0;
 }
+.col {
+  margin: 0px;
+  padding: 0px;
+}
+.row {
+  margin: 0px;
+  padding: 0px;
+}
 
 $color: #c9e4e5;
 $color2: #c9e4e5;
@@ -80,6 +88,9 @@ NAVBAR
   font-family: $halflife !important;
   color: $color !important;
   // color: deeppink !important;
+}
+.nav-link {
+  font-family: $halflife !important;
 }
 .navbar-toggler {
   color: $color !important;
@@ -580,6 +591,32 @@ PROJECTS
   }
 }
 
+/*********************************************************************
+ABOUT
+*********************************************************************/
+.about-container {
+  position: relative;
+  user-select: none;
+  padding: 0px 3%;
+  overflow: hidden;
+}
+.about {
+  display: block;
+
+  h2 {
+    font-family: $halflife;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: $color;
+  }
+
+  p {
+    font-family: $openSans;
+    font-size: 1.08rem;
+    margin-bottom: 1.5rem;
+    color: $color;
+  }
+}
 
 /*********************************************************************
 P5 CANVAS
@@ -620,18 +657,12 @@ section {
 /*********************************************************************
 FOOTER
 *********************************************************************/
-.col {
-  margin: 0px;
-  padding: 0px;
-}
-.row {
-  margin: 0px;
-  padding: 0px;
-}
 .footer-container {
-  margin: 34px 0px 21px 0px;
+  position: relative;
+  margin: 34px 16px 21px 16px;
   padding: 0;
   background-color: #fff;
+  overflow: hidden;
 }
 .footer {
   display: block;
@@ -641,8 +672,25 @@ FOOTER
   font-size: 11px;
   line-height: 16px;
 
+  &.row {
+  }
+
   &-promo {
     margin: 0px 0px 7px 0px;
     padding: 0px 0px 6px 0px;
+    border-bottom: 1px solid #ccc;
+
+    &-content {
+
+    }
+  }
+
+  &-legalese {
+    @include mediaMaxWidth(991px) {
+      .slide__text {
+        background-color: rgba(0,0,0,0.8);
+      } 
+    }
+
   }
 }
