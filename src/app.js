@@ -168,6 +168,8 @@ $(document).ready(function() {
   });
 
 
+
+  /*
   var p5config = function(p) {
     var amount = 256;
     var balls = [];
@@ -225,7 +227,7 @@ $(document).ready(function() {
   };
 
   //var myp5 = new p5(p5config, 'p5-canvas');
-
+  */  
 
 
 });

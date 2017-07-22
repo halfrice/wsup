@@ -85,6 +85,7 @@ NAVBAR
   transition-duration: 0.42s;   
 }
 .navbar-brand {
+  font-weight: bold !important;
   font-family: $halflife !important;
   color: $color !important;
   // color: deeppink !important;
@@ -93,6 +94,10 @@ NAVBAR
   font-family: $halflife !important;
 }
 .navbar-toggler {
+  &:focus,
+  &:active {
+    outline: 0;
+  }
   color: $color !important;
   border: none !important;
   outline: none !important; 
@@ -647,17 +652,7 @@ SKILLS
   color: #ccc;
   height: 100%;
 }
-section {
-  margin: 100px auto 100px auto;
-  height: 500px;
-  width: 600px;
-  background: #333;
-  text-align: center;
-  padding-top: 300px;
-  color: black;
-  font-size: 4em;
-  overflow: hidden; 
-}
+
 
 /*********************************************************************
 FOOTER
@@ -695,14 +690,21 @@ FOOTER
   &-legalese {
     &-links {
       text-align: center;
+      margin: 3px 0px;
       a {
-        color: #666;
-        padding: 0px 16px;
-        border-right: 1px solid #999;
+        color: #888;
       }
       @include mediaMaxWidth(767px) {
         text-align: left;
       }
+    }
+    &-link {
+      border-right: 1px solid #333;
+      margin: 3px 10px 0px 0px;
+      padding: 0px 12px 0px 0px;
+       &:last-of-type {
+        border-right: none;
+       }
     }
     &-location {
       text-align: right;
@@ -715,6 +717,16 @@ FOOTER
 
 
 
-
-
 // STUFF
+section {
+  margin: 100px auto 100px auto;
+  height: 500px;
+  width: 600px;
+  background: #333;
+  text-align: center;
+  padding-top: 300px;
+  color: black;
+  font-size: 4em;
+  overflow: hidden; 
+}
+
