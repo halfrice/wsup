@@ -167,7 +167,26 @@ $(document).ready(function() {
     changeSlides();
   });
 
+  // FEATURE PROJECT
+  var feature = $('#feature');
+  var videoW = feature.attr('width');
+  var videoH = feature.attr('height');
+  var windowW = $(window).width();
+  var displayRatio = videoW/videoH;
+  
+  function featureFitToWindow() {
+    windowW = $(window).width();
+    feature.attr('width', windowW);
+    feature.attr('height', windowW/displayRatio);
+  }
+  featureFitToWindow();
 
+  $(window).on('resize', function() {
+    featureFitToWindow();
+  });
+
+  // $('#feature').attr('width',w);
+  // $('#feature').attr('height',h);
 
   /*
   var p5config = function(p) {
