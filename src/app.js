@@ -61,14 +61,21 @@ $(document).ready(function() {
   
   function createBullets() {
     for (var i = 0; i < numOfSlides+1; i++) {
-      var $li = $("<li class='slider-pagi__elem'></li>");
-      $li.addClass("slider-pagi__elem-"+i).data("page", i);
-      if (!i) $li.addClass("active");
+      var $li = $('<li class="slider-pagi__elem"></li>');
+      var $pb = $('<div class="progressBar"><div class="progress"></div></div>')
+      $li.addClass('slider-pagi__elem-'+i).data('page', i);
+      if (!i) $li.addClass('active');
+      $li.append($pb); 
       $pagination.append($li);
     }
   };
   
   createBullets();
+
+  function progress(percent, $element) {
+    var progressBarWidth = percent * $element.width() / 100;
+    $element.find('div').animate({ width: progressBarWidth }, 6000);
+  }
   
   function manageControls() {
     $(".slider-control").removeClass("inactive");
@@ -101,9 +108,13 @@ $(document).ready(function() {
     }
     window.clearTimeout(autoSlideTimeout);
     $(".slider-pagi__elem").removeClass("active");
+    $(".progressBar").removeClass("active");
     $(".slider-pagi__elem-"+curSlide).addClass("active");
+    var $pb = $(".slider-pagi__elem-"+curSlide+" .progressBar"); 
+    $pb.addClass("active");
     $slider.css("transform", "translate3d("+ -curSlide*100 +"%,0,0)");
     $slideBGs.css("transform", "translate3d("+ curSlide*50 +"%,0,0)");
+    progress(100, $pb);
     diff = 0;
     if (!autoSlideDirty) autoSlide();
   }
