@@ -186,7 +186,7 @@ $(document).ready(function() {
 
   $(window).on('resize', function() {
     featureFitToWindow();
-    projectsFitToWindow();
+    // projectsFitToWindow();
   });
   // fit parent container to new window size; 
 

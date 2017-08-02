@@ -582,25 +582,49 @@ PROJECTS
     background-position: center 20%;
   }
 
+  @include mediaMaxWidth(767px) {
+    margin: 2px 0px 0px 0px;
+    max-width: 100%;
+  }
+  @include mediaMaxWidth(991px) {
+    max-width: 50%;
+  }
+  @include mediaMaxWidth(1199px) {
+    max-width: 25%;
+  }
   
   &:nth-child(1) {
     .project__bg {
       background-image: url('./imgs/proj.png');
+    }
+    @include mediaMaxWidth(991px) {
+      float: left;
+      margin-right: 2px;
     }
   }
   &:nth-child(2) {
     .project__bg {
       background-image: url('./imgs/proj2.jpg');
     }
+    @include mediaMaxWidth(991px) {
+      float: right;
+      margin-left: 2px;
+    }
   }
   &:nth-child(3) {
     .project__bg {
       background-image: url('./imgs/proj3.jpg');
     }
+    @include mediaMaxWidth(991px) {
+      float: left;
+    }
   }
   &:nth-child(4) {
     .project__bg {
       background-image: url('./imgs/proj4.png');
+    }
+    @include mediaMaxWidth(991px) {
+      float: right;
     }
   }
 
@@ -682,9 +706,11 @@ ABOUT
   overflow: hidden;
 }
 .about {
+  padding: 34px 0px 0px 0px;
   display: block;
 
   h2 {
+    margin: 0px auto;
     font-family: $halflife;
     font-size: 2.5rem;
     margin-bottom: 2rem;
@@ -708,11 +734,25 @@ ABOUT
 /*********************************************************************
 SOCIAL
 *********************************************************************/
+.social-container {
+  position: relative;
+  user-select: none;
+  padding: 0px 3%;
+  overflow: hidden;
+}
 .social {
   display: block;
   position: relative;
-  margin: 20px auto;
-  padding: 0px;
+  // margin: 20px auto;
+  padding: 34px 0px 21px 0px;
+
+  h2 {
+    margin: 0px auto;
+    font-family: $halflife;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: $color;
+  }
 }
 .social ul {
   margin: 0px auto;
