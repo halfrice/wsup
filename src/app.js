@@ -45,6 +45,8 @@ $(document).ready(function() {
     $(this).toggleClass("active");
   });
   
+
+  // SLIDER 
   var $slider = $(".slider"),
       $slideBGs = $(".slide__bg"),
       diff = 0,
@@ -173,17 +175,104 @@ $(document).ready(function() {
   var videoH = feature.attr('height');
   var windowW = $(window).width();
   var displayRatio = videoW/videoH;
-  
+
   function featureFitToWindow() {
     windowW = $(window).width();
     feature.attr('width', windowW);
     feature.attr('height', windowW/displayRatio);
+    $('.project-feature').css('height', feature.attr('height'));
   }
   featureFitToWindow();
 
   $(window).on('resize', function() {
     featureFitToWindow();
+    projectsFitToWindow();
   });
+  // fit parent container to new window size; 
+
+
+  // FEATURE PROJECT SPACING
+  function bootstrapViewportSize(n) {
+    var viewBreakpoints = {
+      'xs': 576,
+      'sm': 768,
+      'md': 992,
+      'lg': 1200
+    };
+    var viewportSize;
+    if (n < viewBreakpoints.xs) viewportSize = 'xs';
+    else if (n < viewBreakpoints.sm) viewportSize = 'sm';
+    else if (n < viewBreakpoints.md) viewportSize = 'md';
+    else if (n >= viewBreakpoints.md) viewportSize = 'lg';
+    return viewportSize;
+  }
+
+
+  // PROJECTS
+  var pMap = {};
+  var numOfProjects = $('.project').length-1;
+  function createProjects() {
+    $('.project').each(function(i,e) {
+      $(this).addClass('project-'+i);
+      var map = pMap['project-'+i] = {};
+      map.pos = $(this).position();
+      // map.spacing = calcSpacing($(window).width(), $('.project').width(), 2, $(this));
+      map.spacing = calcSpacing($(this), 2);
+    });
+    // for (var i = 0; i < numOfProjects+1; i++) {
+    //   // $li.addClass("slider-pagi__elem-"+i).data("page", i);
+    //   if (!i) $li.addClass("active");
+    //   $pagination.append($li);
+    // }
+  };
+  console.log(pMap);
+  createProjects();
+
+  function calcSpacing(proj, rows) {
+    var ro = {};
+    ro['margin-top'] = '2px';
+    switch (rows) {
+      case 1:
+        break;
+      case 2:
+        if (proj.position().left === 0) ro['float'] = 'left';
+        else if (proj.position().left >= ($(window).width()/2)-1) ro['float'] = 'right';
+        break;
+      case 4:
+        if (proj.position().left < ($(window.width()/2))-1) ro['float'] = 'left';
+        else if (proj.position().left >= ($(window).width()/2)-1) ro['float'] = 'right';
+        break;
+    }
+    return ro;
+  }
+
+
+  // function projectsFitToWindow() {
+  //   $('.project').each(function(i,v) {
+  //     var proj = $(this);
+  //     var pos = $(this).position();
+  //     proj.css('max-width', projW);
+  //     proj.css('margin-top', '2px');
+  //     if (pos.left === 0) {
+  //       proj.css('margin-right', '2px');
+  //       // console.log(proj.width());
+  //     }
+  //     else {
+  //       proj.css('margin-left', '2px');
+
+  //     }
+  //     // console.log( $(this).css('margin-right') );
+  //   });
+  // }
+
+  // var bootstrapSize = bootstrapViewportSize(windowW);
+  // var projW = $('.project').width();
+  // if (bootstrapSize == 'md') {
+    
+  // }
+
+
+
 
   // $('#feature').attr('width',w);
   // $('#feature').attr('height',h);

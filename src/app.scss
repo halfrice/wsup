@@ -89,7 +89,22 @@ NAVBAR
   color: $color !important;
   height: 100%;
   text-align: center !important;
+
+  i {
+    -webkit-transition: transform .35s ease-in-out;
+    -moz-transition: transform .35s ease-in-out;
+    -o-transition: transform .35s ease-in-out;
+    transition: transform .35s ease-in-out;
+  }
+
+  &:hover i {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg); 
+  }
 }
+
 .nav-link {
   font-family: $halflife !important;
 }
@@ -99,6 +114,7 @@ NAVBAR
   color: $color !important;
   // border: none !important;
   outline: none !important;  
+  height: 46px;
   &:focus,
   &:active {
     outline: 0;
@@ -142,7 +158,7 @@ NAVBAR
         opacity: 0.9;
       }
       &:nth-child(2) {
-        height: 12px;
+        height: 17px;
         visibility: hidden;
         background-color: transparent;
       }
@@ -686,6 +702,48 @@ ABOUT
     }
     
   }
+}
+
+
+/*********************************************************************
+SOCIAL
+*********************************************************************/
+.social {
+  display: block;
+  position: relative;
+  margin: 20px auto;
+  padding: 0px;
+}
+.social ul {
+  margin: 0px auto;
+}
+.social ul > li {
+  display: inline-block;
+  padding: 0px;
+  margin: 0px 6px;
+}
+.social button {
+  height: auto;
+  min-width: 60px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #555;
+  outline: none;
+  font-size: 1.32em;
+  padding: 8px 18px 6px 18px;
+  margin: 0px 0px 0px 0px;
+  opacity: 1;
+  cursor: pointer;
+}
+.social button:hover {
+  opacity: 0.9;
+  position: relative;
+  top: -2px;
+  left: -2px;
+  -webkit-box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.75);
 }
 
 /*********************************************************************
