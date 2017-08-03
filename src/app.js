@@ -62,14 +62,15 @@ $(document).ready(function() {
   function createBullets() {
     for (var i = 0; i < numOfSlides+1; i++) {
       var $li = $('<li class="slider-pagi__elem"></li>');
-      var $pb = $('<div class="progressBar"></div>')
+      var $pb = $('<div class="progressBar"><div class="progress"></div></div>')
       $li.addClass('slider-pagi__elem-'+i).data('page', i);
       if (!i) $li.addClass('active');
       $li.append($pb); 
       $pagination.append($li);
     }
+    $('.progressBar').first().addClass('active');
   };
-  
+
   createBullets();
 
   function manageControls() {
@@ -116,10 +117,17 @@ $(document).ready(function() {
     if (!autoSlideDirty) autoSlide();
   }
 
+  
+  var progAnimating = false;
   function slideProgress(percent, time, $element) {
+    console.log($element);
     var progBarWidth = percent * $element.width() / 100;
-    $element.animate({ width: progBarWidth }, time);
+    var $prog = $element.find('div');
+    $prog.animate({ width: progBarWidth }, time);
+    progAnimating = true;
+    $prog.addClass('animating');
   }
+  slideProgress(100, autoSlideDelay, $('.progressBar').first());
 
   function navigateLeft() {
     if (animating) return;
