@@ -121,11 +121,13 @@ $(document).ready(function() {
   var progAnimating = false;
   function slideProgress(percent, time, $element) {
     console.log($element);
-    var progBarWidth = percent * $element.width() / 100;
     var $prog = $element.find('div');
-    $prog.animate({ width: progBarWidth }, time);
+    var progBarWidth = percent * $element.width() / 100;
+    $prog.animate({ width: progBarWidth }, time, function() {
+      $('.progressBar .progress').css('width', '0%');
+    });
     progAnimating = true;
-    $prog.addClass('animating');
+    // $prog.addClass('animating');
   }
   slideProgress(100, autoSlideDelay, $('.progressBar').first());
 
