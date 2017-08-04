@@ -112,19 +112,24 @@ $(document).ready(function() {
     $(".progressBar").removeClass("active");
     var $pb = $(".slider-pagi__elem-"+curSlide+" .progressBar"); 
     $pb.addClass("active");
+    cleanProgress($pb);
     slideProgress(100, autoSlideDelay, $pb);
 
     if (!autoSlideDirty) autoSlide();
   }
 
+  function cleanProgress($element) {
+    // $element.stop();
+    $('.progressBar .progress').css('width', '0%');
+  }
   
   var progAnimating = false;
   function slideProgress(percent, time, $element) {
-    console.log($element);
+    cleanProgress();
     var $prog = $element.find('div');
     var progBarWidth = percent * $element.width() / 100;
     $prog.animate({ width: progBarWidth }, time, function() {
-      $('.progressBar .progress').css('width', '0%');
+      cleanProgress();
     });
     progAnimating = true;
     // $prog.addClass('animating');
@@ -232,24 +237,19 @@ $(document).ready(function() {
 
 
   // PROJECTS
-  var pMap = {};
+  var projectsMap = {};
   var numOfProjects = $('.project').length-1;
-  function createProjects() {
+  function configProjects() {
     $('.project').each(function(i,e) {
       $(this).addClass('project-'+i);
-      var map = pMap['project-'+i] = {};
+      var map = projectsMap['project-'+i] = {};
       map.pos = $(this).position();
       // map.spacing = calcSpacing($(window).width(), $('.project').width(), 2, $(this));
-      map.spacing = calcSpacing($(this), 2);
+      map.spacing = calcSpacing(2, $(this));
     });
-    // for (var i = 0; i < numOfProjects+1; i++) {
-    //   // $li.addClass("slider-pagi__elem-"+i).data("page", i);
-    //   if (!i) $li.addClass("active");
-    //   $pagination.append($li);
-    // }
   };
-  console.log(pMap);
-  createProjects();
+
+  configProjects();
 
   function calcSpacing(proj, rows) {
     var ro = {};
@@ -293,12 +293,6 @@ $(document).ready(function() {
   // if (bootstrapSize == 'md') {
     
   // }
-
-
-
-
-  // $('#feature').attr('width',w);
-  // $('#feature').attr('height',h);
 
   /*
   var p5config = function(p) {
