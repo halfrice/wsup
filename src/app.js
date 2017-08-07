@@ -174,7 +174,8 @@ $(document).ready(function() {
       return;
     }
     if (diff > -8 && diff < 8) {
-      changeSlides();
+      navigateRight();
+      // changeSlides();
       return;
     }
     if (diff <= -8) {
