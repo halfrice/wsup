@@ -75,8 +75,8 @@ $(document).ready(function() {
 
   function manageControls() {
     $(".slider-control").removeClass("inactive");
-    if (!curSlide) $(".slider-control.left").addClass("inactive");
-    if (curSlide === numOfSlides) $(".slider-control.right").addClass("inactive");
+    // if (!curSlide) $(".slider-control.left").addClass("inactive");
+    // if (curSlide === numOfSlides) $(".slider-control.right").addClass("inactive");
   };
   
   function autoSlide() {
@@ -139,12 +139,14 @@ $(document).ready(function() {
   function navigateLeft() {
     if (animating) return;
     if (curSlide > 0) curSlide--;
+    else if (curSlide <= 0) curSlide = numOfSlides;
     changeSlides();
   }
 
   function navigateRight() {
     if (animating) return;
     if (curSlide < numOfSlides) curSlide++;
+    else if (curSlide >= numOfSlides) curSlide = 0;
     changeSlides();
   }
 
@@ -245,7 +247,7 @@ $(document).ready(function() {
       var map = projectsMap['project-'+i] = {};
       map.pos = $(this).position();
       // map.spacing = calcSpacing($(window).width(), $('.project').width(), 2, $(this));
-      map.spacing = calcSpacing(2, $(this));
+      //map.spacing = calcSpacing(2, $(this));
     });
   };
 
