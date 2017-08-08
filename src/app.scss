@@ -76,6 +76,14 @@ NAVBAR
   // font-size: 14px !important;
   line-height: 26px !important;
   transition-duration: 0.42s;
+  opacity: 0.88;
+
+  // -webkit-filter: blur(5px);
+  // -moz-filter: blur(5px);
+  // -o-filter: blur(5px);
+  // -ms-filter: blur(5px);
+  // filter: blur(5px);
+
   a {
     color: $color;
     font-size: 14px;
@@ -353,15 +361,19 @@ SLIDER
     display: block;
     width: auto;
     max-width: 90%;
-    top: 16%;
+    top: 12%;
     // left: 3%;
     margin: 0px auto;
     text-align: center;
     color: $color2;
     transition: transform 0.5s 0.8s, opacity 0.5s 0.8s;
     will-change: transform, opacity;
-    transform: translateY(-50%);
+    transform: translateY(-70%);
     opacity: 0;
+
+    span {
+      background-color: #000;
+    }
 
     @include mediaMaxWidth(991px) {
       left: 0;
@@ -375,12 +387,19 @@ SLIDER
     }
 
     &-heading {
-      display: inline-block;
+      display: block;
       font-family: $lato;
-      font-size: 2.5rem;
-      margin: 0px auto 34px auto;
-      background-color: #000;
-      box-decoration-break: clone;
+      font-size: 1.618rem;
+      margin: 0px auto 16px auto;
+      // box-decoration-break: clone;
+
+
+      span {
+        padding: 3px 12px;
+        background-color: rgba(#000,0.8);
+      }
+
+
 
       @include mediaMaxWidth(991px) {
         line-height: 5rem;
@@ -391,10 +410,20 @@ SLIDER
     &-desc {
       display: block;
       font-family: $openSans;
-      font-size: 1.08rem;
-      margin-bottom: 34px;
-      background-color: #000;
-      box-decoration-break: clone;
+      font-size: 2rem;
+      margin-bottom: 16px;
+      // background-color: #000;
+      // box-decoration-break: clone;
+
+
+      span {
+        padding: 3px 12px;
+        background-color: rgba(#000,0.8);
+
+        &.gamertag {
+          font-family: $halflife;
+        }
+      }
 
       @include mediaMaxWidth(991px) {
         display: block;
@@ -404,10 +433,9 @@ SLIDER
     &-link {
       z-index: 5;
       display: inline-block;
-      padding: 0.25rem;
       cursor: pointer;
       font-family: $openSans;
-      font-size: 1.15rem;
+      font-size: 1.08rem;
       perspective: 1000px;
       
       @include mediaMaxWidth(991px) {
@@ -582,6 +610,17 @@ PROJECTS
   height: 100%;
   background-color: #fff;
 
+  h2 {
+    margin: 0px auto;
+    font-family: $halflife;
+    font-size: 1.61rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    // margin-bottom: 2rem;
+    color: $color;
+    background-color: #000;
+  }
+
   &.animating {
     transition: transform 0.5s;
     will-change: transform;
@@ -724,7 +763,7 @@ ABOUT
   h2 {
     margin: 0px auto;
     font-family: $halflife;
-    font-size: 2.5rem;
+    font-size: 1.618rem;
     margin-bottom: 2rem;
     color: $color;
   }
@@ -760,7 +799,7 @@ SOCIAL
   h2 {
     margin: 0px auto;
     font-family: $halflife;
-    font-size: 2.5rem;
+    font-size: 1.618rem;
     margin-bottom: 2rem;
     color: $color;
   }
