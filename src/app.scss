@@ -35,6 +35,7 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 html, body {
   font-size: 1em;
+  width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -319,8 +320,6 @@ SLIDER
 
   &__content {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     @include mediaMaxWidth(734px) {
@@ -350,11 +349,14 @@ SLIDER
   }
 
   &__text {
-    // border: 1px solid deeppink;
-    position: absolute;
-    width: 360px;
-    bottom: 23%;
-    left: 3%;
+    position: relative;
+    display: block;
+    width: auto;
+    max-width: 90%;
+    top: 16%;
+    // left: 3%;
+    margin: 0px auto;
+    text-align: center;
     color: $color2;
     transition: transform 0.5s 0.8s, opacity 0.5s 0.8s;
     will-change: transform, opacity;
@@ -373,10 +375,13 @@ SLIDER
     }
 
     &-heading {
+      display: inline-block;
       font-family: $lato;
       font-size: 2.5rem;
-      margin-top: 2rem;
-      
+      margin: 0px auto 34px auto;
+      background-color: #000;
+      box-decoration-break: clone;
+
       @include mediaMaxWidth(991px) {
         line-height: 5rem;
         font-size: 1.75rem;
@@ -384,9 +389,12 @@ SLIDER
     }
 
     &-desc {
+      display: block;
       font-family: $openSans;
       font-size: 1.08rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 34px;
+      background-color: #000;
+      box-decoration-break: clone;
 
       @include mediaMaxWidth(991px) {
         display: block;
@@ -396,7 +404,6 @@ SLIDER
     &-link {
       z-index: 5;
       display: inline-block;
-      position: relative;
       padding: 0.25rem;
       cursor: pointer;
       font-family: $openSans;
