@@ -61,14 +61,17 @@ $(document).ready(function() {
   
   function createBullets() {
     for (var i = 0; i < numOfSlides+1; i++) {
-      var $li = $('<li class="slider-pagi__elem"></li>');
-      var $pb = $('<div class="progressBar"><div class="progress"></div></div>')
-      $li.addClass('slider-pagi__elem-'+i).data('page', i);
+      var $li = $('<li class="slider-pagi-wtf__elem"></li>');
+      // var $li = $('<li class="slider-pagi__elem"></li>');
+      // var $pb = $('<div class="progressBar"><div class="progress"></div></div>')
+      $li.addClass('slider-pagi-wtf__elem-'+i).data('page', i);
+      // $li.addClass('slider-pagi__elem-'+i).data('page', i);
       if (!i) $li.addClass('active');
-      $li.append($pb); 
-      $pagination.append($li);
+      // $li.append($pb); 
+      $('.slider-pagi-wtf').append($li);
+      // $pagination.append($li);
     }
-    $('.progressBar').first().addClass('active');
+    // $('.progressBar').first().addClass('active');
   };
 
   createBullets();
