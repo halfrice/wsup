@@ -31,7 +31,7 @@ $(document).ready(function() {
 
   $(window).scroll(function(e) {
     var scrollTop = $(this).scrollTop();
-    if(scrollTop > lastScrollTop) {
+    if(scrollTop > lastScrollTop && !$('.navbar-collapse').hasClass('show') ) {
       navbar.addClass('navbar-scroll');
     }
     else {
@@ -236,6 +236,7 @@ $(document).ready(function() {
   var windowW = $(window).width();
   var displayRatio = videoW/videoH;
 
+
   function featureFitToWindow() {
     windowW = $(window).width();
     feature.attr('width', windowW);
@@ -244,8 +245,23 @@ $(document).ready(function() {
   }
   featureFitToWindow();
 
+  function projectfitToWindow($e) {
+    var targetW = $e.parent().parent().width();
+    var vidW = $e.attr('width');
+    var vidH = $e.attr('height');
+    var displayRatio = vidW/vidH;
+
+    $e.attr('width', targetW);
+    $e.attr('height', targetW/displayRatio);
+    $e.parent().css('height', $e.attr('height')); 
+    // console.log(targetW, vidW, vidH);
+    // var $e.parent();
+  }
+  projectfitToWindow( $('#project-1') );
+
   $(window).on('resize', function() {
     featureFitToWindow();
+    projectFitToWindow( $('#project-1') );
     // projectsFitToWindow();
   });
   // fit parent container to new window size; 
