@@ -74,23 +74,21 @@ $(document).ready(function() {
   createBullets();
 
   $('.slider-pagi__elem').hover(function() {
-    $(this).find('div').find('div').stop();
     stylePagi($(this));
   });
 
   function stylePagi($element) {
     var pagiActive = $element.hasClass('active');
     var progAnimating = $element.find('div').hasClass('animating');
+    var $progress = $element.find('div').find('div');
     if (pagiActive && progAnimating) {
-      var $p = $element.find('div').find('div');
-      console.log( $p );
+
     }
     else if (pagiActive && !progAnimating) {
-      // console.log( $(this).find('div').find('div') )
-      $element.find('div').find('div').css('width', '100%');
+      $progress.css('width', '100%');
     }
     else {
-      $element.find('div').find('div').css('width', '0%');
+      $progress.css('width', '0%');
     }
   }
 
@@ -147,12 +145,17 @@ $(document).ready(function() {
     $slideBGs.css("transform", "translate3d("+ curSlide*50 +"%,0,0)");
     diff = 0;
 
+    console.log("autoSlideDirty why is this running before haha wtff = " + autoSlideDirty);
     if (!autoSlideDirty) {
       $(".progressBar").removeClass("animating");
       var $pb = $(".slider-pagi__elem-"+curSlide+" .progressBar"); 
       $pb.addClass("animating");
       autoSlide();
       slideProgress(100, autoSlideDelay, $pb);
+    }
+    else {
+      cleanProgress($('.slider-pagi__elem-'+curSlide));
+      stylePagi($('.slider-pagi__elem-'+curSlide));
     }
     // if (!autoSlideDirty) autoSlide();
   }
@@ -217,8 +220,10 @@ $(document).ready(function() {
   
   $(document).on("click", ".slider-pagi__elem", function() {
     autoSlideDirty = true;
+    console.log("autoSlideDirty = " + autoSlideDirty);
     curSlide = $(this).data("page");
-    // cleanProgress($(this));
+    $(this).find('div').find('div').stop();
+    cleanProgress($(this));
     changeSlides();
     stylePagi($(this));
     $('.progressBar').removeClass('animating');
@@ -264,37 +269,37 @@ $(document).ready(function() {
 
 
   // PROJECTS
-  var projectsMap = {};
-  var numOfProjects = $('.project').length-1;
-  function configProjects() {
-    $('.project').each(function(i,e) {
-      $(this).addClass('project-'+i);
-      var map = projectsMap['project-'+i] = {};
-      map.pos = $(this).position();
-      // map.spacing = calcSpacing($(window).width(), $('.project').width(), 2, $(this));
-      //map.spacing = calcSpacing(2, $(this));
-    });
-  };
+  // var projectsMap = {};
+  // var numOfProjects = $('.project').length-1;
+  // function configProjects() {
+  //   $('.project').each(function(i,e) {
+  //     $(this).addClass('project-'+i);
+  //     var map = projectsMap['project-'+i] = {};
+  //     map.pos = $(this).position();
+  //     // map.spacing = calcSpacing($(window).width(), $('.project').width(), 2, $(this));
+  //     //map.spacing = calcSpacing(2, $(this));
+  //   });
+  // };
 
-  configProjects();
+  // configProjects();
 
-  function calcSpacing(proj, rows) {
-    var ro = {};
-    ro['margin-top'] = '2px';
-    switch (rows) {
-      case 1:
-        break;
-      case 2:
-        if (proj.position().left === 0) ro['float'] = 'left';
-        else if (proj.position().left >= ($(window).width()/2)-1) ro['float'] = 'right';
-        break;
-      case 4:
-        if (proj.position().left < ($(window.width()/2))-1) ro['float'] = 'left';
-        else if (proj.position().left >= ($(window).width()/2)-1) ro['float'] = 'right';
-        break;
-    }
-    return ro;
-  }
+  // function calcSpacing(proj, rows) {
+  //   var ro = {};
+  //   ro['margin-top'] = '2px';
+  //   switch (rows) {
+  //     case 1:
+  //       break;
+  //     case 2:
+  //       if (proj.position().left === 0) ro['float'] = 'left';
+  //       else if (proj.position().left >= ($(window).width()/2)-1) ro['float'] = 'right';
+  //       break;
+  //     case 4:
+  //       if (proj.position().left < ($(window.width()/2))-1) ro['float'] = 'left';
+  //       else if (proj.position().left >= ($(window).width()/2)-1) ro['float'] = 'right';
+  //       break;
+  //   }
+  //   return ro;
+  // }
 
 
   // function projectsFitToWindow() {
