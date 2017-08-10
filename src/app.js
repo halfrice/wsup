@@ -59,22 +59,57 @@ $(document).ready(function() {
       autoSlideDirty = false,
       $pagination = $(".slider-pagi");
   
+  // SLIDER-PAGI
   function createBullets() {
     for (var i = 0; i < numOfSlides+1; i++) {
-      var $li = $('<li class="slider-pagi-wtf__elem"></li>');
-      // var $li = $('<li class="slider-pagi__elem"></li>');
-      // var $pb = $('<div class="progressBar"><div class="progress"></div></div>')
-      $li.addClass('slider-pagi-wtf__elem-'+i).data('page', i);
-      // $li.addClass('slider-pagi__elem-'+i).data('page', i);
+      var $li = $('<li class="slider-pagi__elem"></li>');
+      var $pb = $('<div class="progressBar"><div class="progress"></div></div>')
+      $li.addClass('slider-pagi__elem-'+i).data('page', i);
       if (!i) $li.addClass('active');
-      // $li.append($pb); 
-      $('.slider-pagi-wtf').append($li);
-      // $pagination.append($li);
+      $li.append($pb); 
+      $pagination.append($li);
     }
-    // $('.progressBar').first().addClass('active');
-  };
-
+    $('.progressBar').first().addClass('animating');
+  }
   createBullets();
+
+  $('.slider-pagi__elem').hover(function() {
+    $(this).find('div').find('div').stop();
+    stylePagi($(this));
+  });
+
+  function stylePagi($element) {
+    var pagiActive = $element.hasClass('active');
+    var progAnimating = $element.find('div').hasClass('animating');
+    if (pagiActive && progAnimating) {
+      var $p = $element.find('div').find('div');
+      console.log( $p );
+    }
+    else if (pagiActive && !progAnimating) {
+      // console.log( $(this).find('div').find('div') )
+      $element.find('div').find('div').css('width', '100%');
+    }
+    else {
+      $element.find('div').find('div').css('width', '0%');
+    }
+  }
+
+  function cleanProgress($element) {
+    $('.progressBar .progress').css('width', '0%');
+  }
+  
+  var progAnimating = false;
+  function slideProgress(percent, time, $element) {
+    var $prog = $element.find('div');
+    var progBarWidth = percent * $element.width() / 100;
+    cleanProgress();
+    $prog.animate({ width: progBarWidth }, time, function() {
+      cleanProgress();
+    });
+    progAnimating = true;
+    // $prog.addClass('animating');
+  }
+  slideProgress(100, autoSlideDelay, $('.progressBar').first());
 
   function manageControls() {
     $(".slider-control").removeClass("inactive");
@@ -112,32 +147,15 @@ $(document).ready(function() {
     $slideBGs.css("transform", "translate3d("+ curSlide*50 +"%,0,0)");
     diff = 0;
 
-    $(".progressBar").removeClass("active");
-    var $pb = $(".slider-pagi__elem-"+curSlide+" .progressBar"); 
-    $pb.addClass("active");
-    cleanProgress($pb);
-    slideProgress(100, autoSlideDelay, $pb);
-
-    if (!autoSlideDirty) autoSlide();
+    if (!autoSlideDirty) {
+      $(".progressBar").removeClass("animating");
+      var $pb = $(".slider-pagi__elem-"+curSlide+" .progressBar"); 
+      $pb.addClass("animating");
+      autoSlide();
+      slideProgress(100, autoSlideDelay, $pb);
+    }
+    // if (!autoSlideDirty) autoSlide();
   }
-
-  function cleanProgress($element) {
-    // $element.stop();
-    $('.progressBar .progress').css('width', '0%');
-  }
-  
-  var progAnimating = false;
-  function slideProgress(percent, time, $element) {
-    cleanProgress();
-    var $prog = $element.find('div');
-    var progBarWidth = percent * $element.width() / 100;
-    $prog.animate({ width: progBarWidth }, time, function() {
-      cleanProgress();
-    });
-    progAnimating = true;
-    // $prog.addClass('animating');
-  }
-  slideProgress(100, autoSlideDelay, $('.progressBar').first());
 
   function navigateLeft() {
     if (animating) return;
@@ -200,7 +218,10 @@ $(document).ready(function() {
   $(document).on("click", ".slider-pagi__elem", function() {
     autoSlideDirty = true;
     curSlide = $(this).data("page");
+    // cleanProgress($(this));
     changeSlides();
+    stylePagi($(this));
+    $('.progressBar').removeClass('animating');
   });
 
   // FEATURE PROJECT
