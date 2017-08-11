@@ -125,6 +125,8 @@ NAVBAR
   color: $color !important;
   outline: none !important;  
   height: 46px;
+  top: -2px;
+
   &:focus,
   &:active {
     outline: 0;
@@ -160,7 +162,7 @@ NAVBAR
       &:nth-child(1) {
         position: absolute;
         left: 12px;
-        top: 15px;
+        top: 17px;
         opacity: 0.9;
         -webkit-transform: rotate(135deg);
         -moz-transform: rotate(135deg);
@@ -175,7 +177,7 @@ NAVBAR
       &:nth-child(3) {
         position: absolute;
         left: 12px;
-        top: 15px;
+        top: 17px;
         opacity: 0.9;
         -webkit-transform: rotate(-135deg);
         -moz-transform: rotate(-135deg);
@@ -657,8 +659,11 @@ PROJECTS
   }
 }
 .project-wrapper {
-  margin-top: 4px;
+  // margin-top: 4px;
   background: #fff;
+  // @include mediaMaxWidth(734px) {
+  //   margin-top: 2px;
+  // }
 }
 .project {
   // border: 1px solid deeppink;
@@ -667,12 +672,13 @@ PROJECTS
   height: 270px;
   min-height: 200px;
   background-color: #fff;
-  margin: 0px 0px 4px 0px;
+  margin: 0px 0px 2px 0px;
   padding: 0;
   overflow: hidden;
 
   @include mediaMaxWidth(734px) {
     height: 225px;
+    margin: 0px 0px 1px 0px;
   }
 
   &__bg {
@@ -719,8 +725,11 @@ PROJECTS
 
   }
   &-feature {
-    margin: 4px 0px;
+    margin: 2px 0px;
     background-color: #fff;
+    @include mediaMaxWidth(734px) {
+      margin: 1px 0px;
+    }
   }
 
 }

@@ -297,25 +297,27 @@ $(document).ready(function() {
     else if (width >= 768 && width < 1200) {
       for (var i = 0; i < numOfProjects; i++) {
         if ( (i+1)%2 != 0 ) {
-          $('.project-'+i).css('padding-right', '4px');
+          $('.project-'+i).css('padding-right', '2px');
         }
         else if ( (i+1)%2 === 0 ) {
-          $('.project-'+i).css('padding-left', '4px');
+          $('.project-'+i).css('padding-left', '2px');
         }
       }
     }
     else if (width >= 1200) {
       for (var i = 0; i < numOfProjects; i++) {
         if ( (i+1) == numOfProjects ) {
+          console.log('setting .project-'+i+' padding-right: 0px');
           $('.project-'+i).css('padding-right', '0px');
         }
         else {
-          $('.project-'+i).css('padding-right', '4px');
+          console.log('setting .project-'+i+' padding-right: 2px');
+          $('.project-'+i).css('padding-right', '2px');
         }
       }
     }
   }
-  projectsSpacing($(window).width(), $(window).height());
+  projectsSpacing($(window).width(), $(window).height()); 
 
 
   // var projectsMap = {};
