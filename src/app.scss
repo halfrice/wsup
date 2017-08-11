@@ -120,9 +120,9 @@ NAVBAR
 }
 
 .navbar-toggler {
-  border: 1px solid deeppink !important;
+  // border: 1px solid deeppink !important;
+  border: none !important;
   color: $color !important;
-  // border: none !important;
   outline: none !important;  
   height: 46px;
   &:focus,
@@ -131,18 +131,18 @@ NAVBAR
   }
   span {
     display: block;
-    background-color: #999;
+    position: relative;
     height: 3px;
     width: 25px;
     margin-top: 4px;
     margin-bottom: 4px;
+    left: 0;
+    opacity: 1;
+    background-color: #999;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
-    position: relative;
-    left: 0;
-    opacity: 1;
 
     &:nth-child(1),
     &:nth-child(3) {
@@ -161,11 +161,11 @@ NAVBAR
         position: absolute;
         left: 12px;
         top: 15px;
+        opacity: 0.9;
         -webkit-transform: rotate(135deg);
         -moz-transform: rotate(135deg);
         -o-transform: rotate(135deg);
         transform: rotate(135deg);
-        opacity: 0.9;
       }
       &:nth-child(2) {
         height: 17px;
@@ -176,11 +176,11 @@ NAVBAR
         position: absolute;
         left: 12px;
         top: 15px;
+        opacity: 0.9;
         -webkit-transform: rotate(-135deg);
         -moz-transform: rotate(-135deg);
         -o-transform: rotate(-135deg);
         transform: rotate(-135deg);
-        opacity: 0.9;
       }
     }
   }
@@ -533,7 +533,7 @@ SLIDER
       position: absolute;
       top: 50%;
       transform: translate(0, -50%);
-      // border-radius: 12%;
+      // border-radius: 10%;
       margin: auto;
       width: 100%;
       height: 3px;
@@ -661,18 +661,22 @@ PROJECTS
   background: #fff;
 }
 .project {
-  border: 1px solid deeppink;
+  // border: 1px solid deeppink;
   display: block;
   width: 280px;
-  height: 200px;
+  height: 270px;
   min-height: 200px;
-  background-color: #000;
+  background-color: #fff;
   margin: 0px 0px 4px 0px;
   padding: 0;
   overflow: hidden;
 
+  @include mediaMaxWidth(734px) {
+    height: 225px;
+  }
+
   &__bg {
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -681,12 +685,12 @@ PROJECTS
 
   &:nth-child(1) {
     .project__bg {
-      background-image: url('./imgs/proj4.png');
+      background-image: url('./imgs/proj2.jpg');
     }
   }
   &:nth-child(2) {
     .project__bg {
-      background-image: url('./imgs/proj2.jpg');
+      background-image: url('./imgs/proj4.png');
     }
   }
   &:nth-child(3) {
@@ -701,10 +705,11 @@ PROJECTS
   }
 
   &__content {
+    // border: 1px solid red;
+    position: absolute;
     display: block;
     margin: 0px auto;
     text-align: center;
-    border: 1px solid blue;
     position: relative;
     width: 100%;
     height: 100%;
@@ -713,10 +718,11 @@ PROJECTS
     z-index: 6;
 
   }
-   &-feature {
+  &-feature {
     margin: 4px 0px;
     background-color: #fff;
-   }
+  }
+
 }
 .projects-footer {
   padding: 34px 0px 21px 0px;
@@ -804,11 +810,6 @@ ABOUT
     font-size: 1.08rem;
     margin-bottom: 1.5rem;
     color: $color;
-
-    @include mediaMaxWidth(575px) {
-      color: deeppink;
-    }
-    
   }
 }
 

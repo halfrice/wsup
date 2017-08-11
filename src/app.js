@@ -245,23 +245,27 @@ $(document).ready(function() {
   }
   featureFitToWindow();
 
-  function projectfitToWindow($e) {
+  function projectFitToWindow($e) {
     var targetW = $e.parent().parent().width();
+    var targetH = $e.parent().parent().height();
     var vidW = $e.attr('width');
     var vidH = $e.attr('height');
     var displayRatio = vidW/vidH;
 
     $e.attr('width', targetW);
-    $e.attr('height', targetW/displayRatio);
+    $e.attr('height', targetH);
+    // $e.attr('height', targetW/displayRatio);
     $e.parent().css('height', $e.attr('height')); 
     // console.log(targetW, vidW, vidH);
     // var $e.parent();
   }
-  projectfitToWindow( $('#project-1') );
+  projectFitToWindow( $('#project-1') );
 
   $(window).on('resize', function() {
     featureFitToWindow();
     projectFitToWindow( $('#project-1') );
+    // projectsSpacing(bootstrapViewportSize($(window).width())); 
+    projectsSpacing($(window).width(), $(window).height()); 
     // projectsFitToWindow();
   });
   // fit parent container to new window size; 
@@ -283,8 +287,37 @@ $(document).ready(function() {
     return viewportSize;
   }
 
-
   // PROJECTS
+  var numOfProjects = $('.project').length;
+  function projectsSpacing(width, height) {
+    if (width < 768) {
+      $('.project-'+i).css('padding-right', '0px');
+      $('.project-'+i).css('padding-left', '0px');
+    }
+    else if (width >= 768 && width < 1200) {
+      for (var i = 0; i < numOfProjects; i++) {
+        if ( (i+1)%2 != 0 ) {
+          $('.project-'+i).css('padding-right', '4px');
+        }
+        else if ( (i+1)%2 === 0 ) {
+          $('.project-'+i).css('padding-left', '4px');
+        }
+      }
+    }
+    else if (width >= 1200) {
+      for (var i = 0; i < numOfProjects; i++) {
+        if ( (i+1) == numOfProjects ) {
+          $('.project-'+i).css('padding-right', '0px');
+        }
+        else {
+          $('.project-'+i).css('padding-right', '4px');
+        }
+      }
+    }
+  }
+  projectsSpacing($(window).width(), $(window).height());
+
+
   // var projectsMap = {};
   // var numOfProjects = $('.project').length-1;
   // function configProjects() {
