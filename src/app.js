@@ -287,7 +287,7 @@ $(document).ready(function() {
     return viewportSize;
   }
 
-  // PROJECTS
+  // PROJECTS SPACING
   var numOfProjects = $('.project').length;
   function projectsSpacing(width, height) {
     if (width < 768) {
