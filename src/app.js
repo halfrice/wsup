@@ -25,6 +25,9 @@ const css = require('./app.scss');
 
 $(document).ready(function() {
 
+  // GLOBAL
+  var isMobile = false;
+
   // NAVBAR
   var navbar = $('.navbar');
   var lastScrollTop = 0;
@@ -318,64 +321,6 @@ $(document).ready(function() {
     }
   }
   projectsSpacing($(window).width(), $(window).height()); 
-
-
-  // var projectsMap = {};
-  // var numOfProjects = $('.project').length-1;
-  // function configProjects() {
-  //   $('.project').each(function(i,e) {
-  //     $(this).addClass('project-'+i);
-  //     var map = projectsMap['project-'+i] = {};
-  //     map.pos = $(this).position();
-  //     // map.spacing = calcSpacing($(window).width(), $('.project').width(), 2, $(this));
-  //     //map.spacing = calcSpacing(2, $(this));
-  //   });
-  // };
-
-  // configProjects();
-
-  // function calcSpacing(proj, rows) {
-  //   var ro = {};
-  //   ro['margin-top'] = '2px';
-  //   switch (rows) {
-  //     case 1:
-  //       break;
-  //     case 2:
-  //       if (proj.position().left === 0) ro['float'] = 'left';
-  //       else if (proj.position().left >= ($(window).width()/2)-1) ro['float'] = 'right';
-  //       break;
-  //     case 4:
-  //       if (proj.position().left < ($(window.width()/2))-1) ro['float'] = 'left';
-  //       else if (proj.position().left >= ($(window).width()/2)-1) ro['float'] = 'right';
-  //       break;
-  //   }
-  //   return ro;
-  // }
-
-
-  // function projectsFitToWindow() {
-  //   $('.project').each(function(i,v) {
-  //     var proj = $(this);
-  //     var pos = $(this).position();
-  //     proj.css('max-width', projW);
-  //     proj.css('margin-top', '2px');
-  //     if (pos.left === 0) {
-  //       proj.css('margin-right', '2px');
-  //       // console.log(proj.width());
-  //     }
-  //     else {
-  //       proj.css('margin-left', '2px');
-
-  //     }
-  //     // console.log( $(this).css('margin-right') );
-  //   });
-  // }
-
-  // var bootstrapSize = bootstrapViewportSize(windowW);
-  // var projW = $('.project').width();
-  // if (bootstrapSize == 'md') {
-    
-  // }
 
   /*
   var p5config = function(p) {

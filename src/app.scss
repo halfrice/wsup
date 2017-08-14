@@ -1,3 +1,13 @@
+/*   RESET   */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure,  footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0; 
+  padding: 0; 
+  border: 0; 
+  outline: 0; 
+  font-size: 100%; 
+  vertical-align: baseline; 
+  background: transparent;
+}
 @font-face {
   font-family: 'Half-Life';
   src: url('./fonts/HalfLife.ttf') format('truetype');
@@ -204,8 +214,10 @@ SLIDER
   //   max-height: 90%;
   // }  
   @include mediaMaxWidth(734px) {
-    max-height: 640px;
-    height: 640px;
+    // max-height: 640px;
+    // height: 640px;
+    max-height: calc(100vh - 50px);
+    height: calc(100vh - 50px);
   }
 }
 .slider {
@@ -881,6 +893,63 @@ ABOUT
 }
 
 /*********************************************************************
+RESUME
+*********************************************************************/
+.resume-container {
+  position: relative;
+  height: 100%;
+  margin: 0px auto;
+  max-width: 1024px;
+  padding: 10px;
+  background: transparent;
+}
+.resume {
+  width: 100%;
+  margin: 0px auto;
+  text-align: center;
+  // padding: 34px 0px 34px 0px;
+  background: #fff;
+
+  .vcard {
+    border: 1px solid deeppink;
+    margin-bottom: 10px;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+
+    &__text-heading {
+      border: 1px solid red;
+      font-size: 2.7em;
+      font-weight: bold;
+      padding: 5px 0px 5px 10px;
+      float: left;
+    }
+
+    &__contact {
+      border: 1px solid pink;
+      display: inline;
+      list-style: none;
+      margin: 21px 0 0 250px;
+      overflow: hidden;
+      float: left;
+
+      li {
+        border: 1px solid blue;
+        border-right: 1px solid #ccc;
+        display: inline;
+        font-size: 0.8em;
+        width: 25%;
+        padding: 2px 0;
+        text-align: center;
+        float: left;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+
+/*********************************************************************
 SOCIAL
 *********************************************************************/
 .social-container {
@@ -888,12 +957,14 @@ SOCIAL
   user-select: none;
   padding: 0px 3%;
   overflow: hidden;
+  flex-wrap: nowrap;
 }
 .social {
   display: block;
   position: relative;
   // margin: 20px auto;
   padding: 34px 0px 21px 0px;
+  flex-wrap: nowrap;
 
   h2 {
     margin: 0px auto;
@@ -905,11 +976,13 @@ SOCIAL
 }
 .social ul {
   margin: 0px auto;
+  flex-wrap: nowrap;
 }
 .social ul > li {
   display: inline-block;
   padding: 0px;
-  margin: 0px 6px;
+  margin: 0px 4px;
+  flex-wrap: nowrap;
 }
 .social button {
   height: auto;
