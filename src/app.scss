@@ -962,11 +962,13 @@ RESUME
     }
   }
 
-  .summary {
+  .section {
     font-size: 0.9em; 
     margin: 18px 0; 
     overflow: hidden; 
+  }
 
+  .summary {
     h1 {
       border-left: 2px solid #DDD; 
       font-size: 1.1em; 
@@ -979,8 +981,82 @@ RESUME
       padding: 0 20px 5px;
     }
   }
-}
 
+  .xp {
+    h1 {
+      border-left: 2px solid #DDD; 
+      font-size: 1.1em; 
+      margin-bottom: 10px; 
+      padding-left: 5px; 
+      text-transform: uppercase;
+    }
+
+    .work {
+      border: 1px solid pink;
+      margin: 5px 0 5px 95px; 
+      padding-left: 5px; 
+      position: relative; 
+      border: 1px solid #FCFCFC
+
+      &:hover {
+        border: 1px dotted #ddd; 
+        background: #fefefe
+      }
+
+      h1 {
+        border: none; 
+        font-size: 1.1em; 
+        font-style: italic; 
+        font-weight: bold; 
+        padding: 0; 
+        text-transform: none;
+
+        a {
+          color: #333; 
+          text-decoration: none;
+          &:hover {
+            background-color: #333; color: #eee
+          }
+        }
+        span {
+          color: #777; 
+          font-size: 0.8em; 
+          font-weight: normal;
+        }
+      }
+      h2 {
+        background: #eee; 
+        display: inline; 
+        font-size: 0.9em; 
+        font-weight: normal; 
+        padding: 3px;
+      }
+      .start, .end {
+        border-top: 1px dashed #ddd; 
+        font-size: 0.7em; 
+        left: -80px; 
+        padding: 4px 0; 
+        position: absolute; 
+        text-align: center; 
+        top: 19px; 
+        width: 67px;
+      }
+      .end {
+        top: 0; 
+        border: none
+      }
+      p {
+        font-size: 0.9em; 
+        line-height: 22px; 
+        margin: 10px 0 0; 
+        padding-left: 0;
+      }
+    }
+    .work:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
 
 /*********************************************************************
 SOCIAL
