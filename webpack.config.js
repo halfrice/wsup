@@ -7,7 +7,7 @@ var isProd = process.env.NODE_ENV === 'production';
 var cssDev = ['style-loader','css-loader','sass-loader'];
 var cssProd = ExtractTextPlugin.extract({
   fallback: 'style-loader',
-  use: ['css-loader','sass-loader'],
+  use: ['css-loader','resolve-url-loader','sass-loader'],
 });
 var cssConfig = isProd ? cssProd : cssDev;
 
@@ -16,8 +16,8 @@ module.exports = {
     vendor: [
       'jquery',
       'lodash',
-      'bootstrap-loader',
       'tether',
+      'bootstrap-loader',
       'font-awesome-sass-loader!./font-awesome.config.js',
       'p5'
     ],
@@ -87,10 +87,15 @@ module.exports = {
       Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
       Util: "exports-loader?Util!bootstrap/js/dist/util",
     }),
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     NODE_ENV: JSON.stringify('production')
+    //   }
+    // }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor']
+      names: ['vendor','manifest']
     }),
   ],
 

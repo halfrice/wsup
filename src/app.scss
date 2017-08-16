@@ -1,13 +1,16 @@
-/*   RESET   */
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure,  footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
-  margin: 0; 
-  padding: 0; 
-  border: 0; 
-  outline: 0; 
-  font-size: 100%; 
-  vertical-align: baseline; 
-  background: transparent;
+// CSS RESET
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  outline: 0;
+  vertical-align: baseline;
+  font-weight: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 100%;
 }
+
 @font-face {
   font-family: 'Half-Life';
   src: url('./fonts/HalfLife.ttf') format('truetype');
@@ -26,30 +29,30 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 //   font-family: 'Gentium Basic', serif;
 //   src: url('./fonts/GenBasR.ttf') format('truetype');
 // }
-
-
 $halflife: 'Half-Life', Arial, sans-serif;
 $lato: 'Lato', Helvetica, Arial, sans-serif;
 $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 // $gentium: 'Gentium Basic', serif;
+
 @mixin mediaMaxWidth($w) {
   @media (max-width: $w) {
     @content;
   }
 }
 
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html, body {
-  font-size: 1em;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+// *, *:before, *:after {
+//   box-sizing: border-box;
+//   margin: 0;
+//   padding: 0;
+// }
+// html, body {
+//   font-size: 1em;
+//   width: 100%;
+//   height: 100%;
+//   margin: 0;
+//   padding: 0;
+// }
+
 body {
   background: #000;
 }
@@ -57,25 +60,26 @@ svg {
   display: block;
   overflow: visible;
 }
-.container-fluid {
-  margin: 0;
-  padding: 0;
-}
-.col {
-  margin: 0px;
-  padding: 0px;
-}
-.row {
-  margin: 0px;
-  padding: 0px;
-}
+
+// .container-fluid {
+//   margin: 0;
+//   padding: 0;
+// }
+// .col {
+//   margin: 0px;
+//   padding: 0px;
+// }
+// .row {
+//   margin: 0px;
+//   padding: 0px;
+// }
 
 $color: #c9e4e5;
 $color2: #c9e4e5;
-
 $pagiColor: #2f3738;
-// $overlayColor: rgb(47,55,56);
 $overlayColor: rgb(0,0,0);
+// $overlayColor: rgb(47,55,56);
+
 /*********************************************************************
 NAVBAR
 *********************************************************************/
@@ -870,6 +874,7 @@ ABOUT
   position: relative;
   user-select: none;
   padding: 0px 3%;
+  background: #000;
   overflow: hidden;
 }
 .about {
@@ -896,54 +901,82 @@ ABOUT
 RESUME
 *********************************************************************/
 .resume-container {
+  border: 1px solid yellow;
   position: relative;
-  height: 100%;
-  margin: 0px auto;
-  max-width: 1024px;
-  padding: 10px;
-  background: transparent;
+  background: #fff;
+  line-height: 1;
 }
 .resume {
-  width: 100%;
+  border: 1px solid deeppink;
+  padding: 10px;
   margin: 0px auto;
-  text-align: center;
-  // padding: 34px 0px 34px 0px;
-  background: #fff;
+  max-width: 1024px;
+
+  .controls {
+    padding-right: 50px;
+    float: right;
+    color: #000;
+  }
 
   .vcard {
-    border: 1px solid deeppink;
     margin-bottom: 10px;
-    width: 100%;
-    float: left;
     overflow: hidden;
 
-    &__text-heading {
-      border: 1px solid red;
+    .full-name {
       font-size: 2.7em;
       font-weight: bold;
-      padding: 5px 0px 5px 10px;
+      padding: 5px 0 5px 10px;
       float: left;
+      cursor: pointer;
+      a:hover {
+        background-color: #eee;
+        text-decoration: none;
+      }
     }
 
-    &__contact {
-      border: 1px solid pink;
-      display: inline;
+    .contact {
       list-style: none;
       margin: 21px 0 0 250px;
       overflow: hidden;
-      float: left;
 
       li {
-        border: 1px solid blue;
-        border-right: 1px solid #ccc;
-        display: inline;
-        font-size: 0.8em;
-        width: 25%;
-        padding: 2px 0;
-        text-align: center;
-        float: left;
+        border-right: 1px solid #ccc; 
+        display: inline; 
+        float: left; 
+        font-size: 0.8em; 
+        padding: 2px 0; 
+        text-align: center; 
+        width: 25%; 
         overflow: hidden;
       }
+      li:last-child {
+        border: none
+      }
+      a{
+        color: #000;
+        &:hover {
+          background-color: #eee;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .summary {
+    font-size: 0.9em; 
+    margin: 18px 0; 
+    overflow: hidden; 
+
+    h1 {
+      border-left: 2px solid #DDD; 
+      font-size: 1.1em; 
+      margin-bottom: 10px; 
+      padding-left: 5px; 
+      text-transform: uppercase;
+    }
+    p {
+      line-height: 1.25em; 
+      padding: 0 20px 5px;
     }
   }
 }
@@ -956,8 +989,8 @@ SOCIAL
   position: relative;
   user-select: none;
   padding: 0px 3%;
+  background: #000;
   overflow: hidden;
-  flex-wrap: nowrap;
 }
 .social {
   display: block;
@@ -1038,21 +1071,28 @@ SKILLS
 FOOTER
 *********************************************************************/
 .footer-container {
+  border: 1px solid yellow;
   position: relative;
-  margin: 34px 16px 21px 16px;
   padding: 0;
   background-color: #000;
   overflow: hidden;
 }
+.footer-wrapper {
+  border: 1px solid deeppink;
+  margin: 34px 16px 21px 16px;
+}
 .footer {
+  border: 1px solid pink;
+  margin: 0px auto;
+  text-align: center;
   display: block;
-  min-height: 52px;
   width: 100%;
   max-width: 991px;
+  min-height: 52px;
   line-height: 16px;
   font-size: 11px;
   color: $color;
-  margin: 0px auto;
+  // margin: 0px auto;
 
   &.row {
   }
@@ -1063,11 +1103,15 @@ FOOTER
     border-bottom: 1px solid #333;
 
     &-content {
-
+      padding: 0;
+      text-align: left;
     }
   }
 
   &-legalese {
+    &-content {
+      text-align: left;
+    }
     &-links {
       text-align: center;
       margin: 3px 0px;
@@ -1095,6 +1139,30 @@ FOOTER
   }
 }
 
+.test-container {
+  position: relative;
+  background: #666;
+  display: block;
+  width: 100%;
+  height: 420px;
+
+  &__test {
+    border: 1px solid deeppink;
+    background: #333;
+    width: 90%;
+    height: 210px;
+    margin: 0px auto;
+    text-align: center;
+
+    h2 {
+      color: pink;
+    }
+
+    p {
+      color: yellow;
+    }
+  }
+}
 
 
 // STUFF
