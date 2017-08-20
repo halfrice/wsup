@@ -12,27 +12,78 @@
 }
 
 @font-face {
+  font-family: 'Amiri';
+  src: url('./fonts/Amiri-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Crimson Text';
+  src: url('./fonts/CrimsonText-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Exo 2';
+  src: url('./fonts/Exo2-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Gentium Basic', serif;
+  src: url('./fonts/GenBasR.ttf') format('truetype');
+}
+@font-face {
   font-family: 'Half-Life';
   src: url('./fonts/HalfLife.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Lato-Regular';
+  font-family: 'Julius Sans One';
+  src: url('./fonts/JuliusSansOne-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
   src: url('./fonts/Lato-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./fonts/Montserrat-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Muli';
+  src: url('./fonts/Muli-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Open Sans', sans-serif;
   src: url('./fonts/OpenSans-Regular.ttf') format('truetype');
 }
-// @font-face {
-//   font-family: 'Gentium Basic', serif;
-//   src: url('./fonts/GenBasR.ttf') format('truetype');
-// }
+@font-face {
+  font-family: 'Oswald';
+  src: url('./fonts/Oswald-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Ovo';
+  src: url('./fonts/Ovo-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Stint Ultra Expanded';
+  src: url('./fonts/StintUltraExpanded-Regular.ttf') format('truetype');
+}
+$amiri: 'Amiri';
+$chonburi: 'Chonburi';
+$crimson: 'Crimson Text';
+$exo: 'Exo 2';
+$gentium: 'Gentium Basic', serif;
 $halflife: 'Half-Life', Arial, sans-serif;
+$julius: 'Julius Sans One';
 $lato: 'Lato', Helvetica, Arial, sans-serif;
+$montserrat: 'Montserrat';
+$muli: 'Muli';
 $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
-// $gentium: 'Gentium Basic', serif;
+$oswald: 'Oswald';
+$ovo: 'Ovo';
+$roboto: 'Roboto';
+$stint: 'Stint Ultra Expanded';
 
 @mixin mediaMaxWidth($w) {
   @media (max-width: $w) {
@@ -871,189 +922,37 @@ PROJECTS
 ABOUT
 *********************************************************************/
 .about-container {
+  // border: 1px solid pink;
   position: relative;
   user-select: none;
-  padding: 0px 3%;
+  padding: 0;
   background: #000;
+  padding: 33px 15px 21px 15px;
   overflow: hidden;
 }
 .about {
-  padding: 34px 0px 0px 0px;
+  max-width: 1024px;
+  margin: 0px auto;
+  // border: 1px solid deeppink;
   display: block;
 
   h2 {
     margin: 0px auto;
     font-family: $halflife;
     font-size: 1.618rem;
-    margin-bottom: 2rem;
+    margin-bottom: 21px;
+    // margin-bottom: 2rem;
     color: $color;
   }
 
   p {
+    // border: 1px solid fuchsia;
     font-family: $openSans;
     font-size: 1.08rem;
-    margin-bottom: 1.5rem;
+    // margin-bottom: 1.5rem;
     color: $color;
-  }
-}
-
-/*********************************************************************
-RESUME
-*********************************************************************/
-.resume-container {
-  border: 1px solid yellow;
-  position: relative;
-  background: #fff;
-  line-height: 1;
-}
-.resume {
-  border: 1px solid deeppink;
-  padding: 10px;
-  margin: 0px auto;
-  max-width: 1024px;
-
-  .controls {
-    padding-right: 50px;
-    float: right;
-    color: #000;
-  }
-
-  .vcard {
-    margin-bottom: 10px;
-    overflow: hidden;
-
-    .full-name {
-      font-size: 2.7em;
-      font-weight: bold;
-      padding: 5px 0 5px 10px;
-      float: left;
-      cursor: pointer;
-      a:hover {
-        background-color: #eee;
-        text-decoration: none;
-      }
-    }
-
-    .contact {
-      list-style: none;
-      margin: 21px 0 0 250px;
-      overflow: hidden;
-
-      li {
-        border-right: 1px solid #ccc; 
-        display: inline; 
-        float: left; 
-        font-size: 0.8em; 
-        padding: 2px 0; 
-        text-align: center; 
-        width: 25%; 
-        overflow: hidden;
-      }
-      li:last-child {
-        border: none
-      }
-      a{
-        color: #000;
-        &:hover {
-          background-color: #eee;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-
-  .section {
-    font-size: 0.9em; 
-    margin: 18px 0; 
-    overflow: hidden; 
-  }
-
-  .summary {
-    h1 {
-      border-left: 2px solid #DDD; 
-      font-size: 1.1em; 
-      margin-bottom: 10px; 
-      padding-left: 5px; 
-      text-transform: uppercase;
-    }
-    p {
-      line-height: 1.25em; 
-      padding: 0 20px 5px;
-    }
-  }
-
-  .xp {
-    h1 {
-      border-left: 2px solid #DDD; 
-      font-size: 1.1em; 
-      margin-bottom: 10px; 
-      padding-left: 5px; 
-      text-transform: uppercase;
-    }
-
-    .work {
-      border: 1px solid pink;
-      margin: 5px 0 5px 95px; 
-      padding-left: 5px; 
-      position: relative; 
-      border: 1px solid #FCFCFC
-
-      &:hover {
-        border: 1px dotted #ddd; 
-        background: #fefefe
-      }
-
-      h1 {
-        border: none; 
-        font-size: 1.1em; 
-        font-style: italic; 
-        font-weight: bold; 
-        padding: 0; 
-        text-transform: none;
-
-        a {
-          color: #333; 
-          text-decoration: none;
-          &:hover {
-            background-color: #333; color: #eee
-          }
-        }
-        span {
-          color: #777; 
-          font-size: 0.8em; 
-          font-weight: normal;
-        }
-      }
-      h2 {
-        background: #eee; 
-        display: inline; 
-        font-size: 0.9em; 
-        font-weight: normal; 
-        padding: 3px;
-      }
-      .start, .end {
-        border-top: 1px dashed #ddd; 
-        font-size: 0.7em; 
-        left: -80px; 
-        padding: 4px 0; 
-        position: absolute; 
-        text-align: center; 
-        top: 19px; 
-        width: 67px;
-      }
-      .end {
-        top: 0; 
-        border: none
-      }
-      p {
-        font-size: 0.9em; 
-        line-height: 22px; 
-        margin: 10px 0 0; 
-        padding-left: 0;
-      }
-    }
-    .work:last-child {
-      margin-bottom: 0;
+    &:last-of-type {
+      margin: 0;
     }
   }
 }
@@ -1062,24 +961,26 @@ RESUME
 SOCIAL
 *********************************************************************/
 .social-container {
+  // border: 1px solid palevioletred;
   position: relative;
   user-select: none;
   padding: 0px 3%;
   background: #000;
   overflow: hidden;
+  padding: 34px 0px 21px 0px;
 }
 .social {
+  // border: 1px solid hotpink;
   display: block;
   position: relative;
   // margin: 20px auto;
-  padding: 34px 0px 21px 0px;
   flex-wrap: nowrap;
 
   h2 {
     margin: 0px auto;
     font-family: $halflife;
     font-size: 1.618rem;
-    margin-bottom: 2rem;
+    margin-bottom: 21px;
     color: $color;
   }
 }
@@ -1118,6 +1019,272 @@ SOCIAL
 }
 
 /*********************************************************************
+RESUME
+*********************************************************************/
+.resume-container {
+  // border: 1px solid yellow;
+  position: relative;
+  background: #000;
+  line-height: 1;
+  padding: 34px 15px 21px 15px;
+}
+.resume-title {
+  // border: 1px solid deeppink;
+  padding: 0;
+  margin: 0px auto;
+  text-align: center;
+
+  &-wrapper {
+    cursor: pointer;
+
+  }
+
+  h2 {
+    margin: 0px auto;
+    font-family: $halflife;
+    font-size: 1.618rem;
+    margin-bottom: 21px;
+    color: $color;
+  }
+
+  i {
+    color: #fff;
+
+    -webkit-transition: transform .35s ease-in-out;
+    -moz-transition: transform .35s ease-in-out;
+    -o-transition: transform .35s ease-in-out;
+    transition: transform .35s ease-in-out;
+  }
+
+  &.caret {
+    &-collapsed {
+      color: deeppink;
+      i {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg); 
+      }
+    }
+  }
+}
+
+.resume {
+  // border: 1px solid deeppink;
+  padding: 10px 20px;
+  margin: 0px auto;
+  background: #fff;
+  max-width: 1024px;
+  color: #333;
+  font-family: $roboto;
+
+  .controls {
+    padding: 4px 10px 0 0;
+    float: right;
+    color: #000;
+  }
+
+  .section {
+    // border: 1px solid deeppink;
+    font-size: 0.9em; 
+    margin: 18px 0; 
+    overflow: hidden; 
+
+    h1 {
+      font-family: $oswald;
+      letter-spacing: 0.09em;
+      border-left: 2px solid #DDD; 
+      border-bottom: 1px solid #DDD; 
+      font-size: 1.1em; 
+      font-weight: bold;
+      margin-bottom: 10px; 
+      padding-left: 5px; 
+      text-transform: uppercase;
+      color: #3B5998;
+      // color: #3b5998;
+    }
+    p {
+      font-family: $roboto;
+      line-height: 1.25em; 
+      padding: 0 20px 5px;
+    }
+  }
+
+  .vcard {
+    margin-bottom: 10px;
+    overflow: hidden;
+
+    .full-name {
+      font-size: 2.7em;
+      font-weight: bold;
+      padding: 5px 0 5px 10px;
+      float: left;
+      cursor: pointer;
+      a {
+        color: #3B5998;
+      }
+      a:hover {
+        background-color: #eee;
+        text-decoration: none;
+      }
+    }
+
+    .contact {
+      list-style: none;
+      margin: 21px 0 0 310px;
+      overflow: hidden;
+
+      li {
+        border-right: 1px solid #ccc; 
+        display: inline; 
+        float: left; 
+        font-size: 0.8em; 
+        padding: 2px 0; 
+        text-align: center; 
+        width: 29%; 
+        overflow: hidden;
+      }
+      li:last-child {
+        border: none
+      }
+      a{
+        color: #000;
+        &:hover {
+          background-color: #eee;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .summary {
+    h1 {
+      border-left: 2px solid #DDD; 
+      font-size: 1.1em; 
+      margin-bottom: 10px; 
+      padding-left: 5px; 
+      text-transform: uppercase;
+    }
+    p {
+      line-height: 1.25em; 
+      padding: 0 20px 5px;
+    }
+  }
+
+  .xp {
+    article {
+      margin: 5px 0 5px 95px; 
+      padding-left: 5px; 
+      position: relative; 
+      border: 1px solid #FCFCFC;
+
+      .start, .end {
+        border-top: 1px solid #ddd; 
+        font-size: 0.7em; 
+        left: -80px; 
+        padding: 4px 0; 
+        position: absolute; 
+        text-align: center; 
+        top: 19px; 
+        width: 67px;
+      }
+
+      .end {
+        top: 0; 
+        border: none
+      }
+
+      h1 {
+        font-family: $muli;
+        letter-spacing: 0em;
+        border: none; 
+        font-size: 1.1em; 
+        font-weight: bold; 
+        padding: 0; 
+        text-transform: none;
+
+        a {
+          color: #333; 
+          text-decoration: none;
+          &:hover {
+            background-color: #333; 
+            color: #eee
+          }
+        }
+
+        span {
+          color: #777; 
+          font-size: 0.8em; 
+          font-weight: normal;
+        }
+      }
+
+      h2 {
+        font-family: $roboto;
+        background: #eee; 
+        display: inline; 
+        font-size: 0.9em; 
+        font-weight: normal; 
+        padding: 3px;
+      }
+
+      p {
+        font-size: 0.9em; 
+        line-height: 22px; 
+        margin: 10px 0 0; 
+        padding-left: 0;
+      }
+    }
+    article:last-child {
+      margin-bottom: 0;
+    }
+    article:hover {
+      border: 1px solid #ddd; 
+      background: #fefefe
+    }
+  }
+
+  .skills {
+    dl {
+      margin-left: 15px; 
+      font-size: 95%;
+      dt {
+        clear: left; 
+        display: inline; 
+        float: left; 
+        margin: 10px 5px 10px 0; 
+        padding: 2px; 
+        text-align: right; 
+        /*width: 150px;*/
+      }
+      dd {
+        background: #dfdfdf; 
+        display: inline; 
+        float: left; 
+        font-size: 0.9em; 
+        margin: 7px 4px; 
+        padding: 5px; 
+        -webkit-border-radius: 5px; 
+        border-radius: 5px; 
+        -webkit-box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, 0.35);  
+        box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, 0.35); 
+        cursor: default;
+        &:hover {
+          background-color: #ccc; 
+          -webkit-box-shadow: inset 0px 2px 1px 1px rgba(0, 0, 0, 0.15); 
+          box-shadow: inset 0px 2px 1px 1px rgba(0, 0, 0, 0.15); 
+        }
+      }
+    }
+  }
+}
+
+// #skills dl dd:hover {
+// }
+
+
+
+/*********************************************************************
 P5 CANVAS
 *********************************************************************/
 .p5-canvas-container {
@@ -1136,34 +1303,35 @@ P5 CANVAS
 /*********************************************************************
 SKILLS
 *********************************************************************/
-.skills {
-  background: #100606;
-  color: #ccc;
-  height: 100%;
-}
+// .skills {
+//   background: #100606;
+//   color: #ccc;
+//   height: 100%;
+// }
 
 
 /*********************************************************************
 FOOTER
 *********************************************************************/
 .footer-container {
-  border: 1px solid yellow;
+  // border: 1px solid yellow;
   position: relative;
   padding: 0;
   background-color: #000;
   overflow: hidden;
 }
 .footer-wrapper {
-  border: 1px solid deeppink;
-  margin: 34px 16px 21px 16px;
+  // border: 1px solid deeppink;
+  margin: 21px 16px 21px 16px;
 }
 .footer {
-  border: 1px solid pink;
+  // border: 1px solid pink;
   margin: 0px auto;
   text-align: center;
   display: block;
   width: 100%;
-  max-width: 991px;
+  max-width: 1024px;
+  // max-width: 991px;
   min-height: 52px;
   line-height: 16px;
   font-size: 11px;

@@ -148,7 +148,7 @@ $(document).ready(function() {
     $slideBGs.css("transform", "translate3d("+ curSlide*50 +"%,0,0)");
     diff = 0;
 
-    console.log("autoSlideDirty why is this running before haha wtff = " + autoSlideDirty);
+    // console.log("autoSlideDirty why is this running before haha wtff = " + autoSlideDirty);
     if (!autoSlideDirty) {
       $(".progressBar").removeClass("animating");
       var $pb = $(".slider-pagi__elem-"+curSlide+" .progressBar"); 
@@ -321,6 +321,40 @@ $(document).ready(function() {
     }
   }
   projectsSpacing($(window).width(), $(window).height()); 
+
+
+
+  // RESUME
+  $resume = $('.resume');
+  $(document).on('click', '.resume-title, .nav-link-resume', function(event) {
+    console.log('wtf');
+    var e = $('.resume-title');
+    var eh2 = e.find('h2');
+    var r = $('.resume');
+
+    if (!e.hasClass('caret-collapsed')) {
+      e.addClass('caret-collapsed');
+      eh2.animate({'margin-bottom': '21px'}, 500);
+      // .css('margin-bottom','21px')
+      $resume.slideDown('slow');
+      // r.css('display', 'block');
+    }
+    else {
+      e.removeClass('caret-collapsed');
+      // eh2.css('margin-bottom','0px')
+      eh2.animate({'margin-bottom': '0px'}, 500);
+      $resume.slideUp('slow');
+      // r.css('display', 'none');
+    }
+    // $caretRight = $('<i class="fa fa-caret-right" aria-hidden="true"></i>');
+  });
+  $resume.hide();
+
+
+  function showResume() {
+    var r = $('.resume');
+  }
+
 
   /*
   var p5config = function(p) {
