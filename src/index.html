@@ -19,9 +19,15 @@
       </a>
       <div class="collapse navbar-collapse py-2" id="navbarLinks">
         <a class="nav-item nav-link active" href="#projects">PROJECTS<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#about">aBOUT</a>
-        <a class="nav-item nav-link" href="#social">CONTaCT</a>
-        <a class="nav-item nav-link nav-link-resume" href="#resume">RESUME</a>
+        <a class="nav-item nav-link" href="#about"
+        data-toggle="collapse" data-target=".navbar-collapse.show"
+        >aBOUT</a>
+        <a class="nav-item nav-link" href="#social" 
+        data-toggle="collapse" data-target=".navbar-collapse.show"
+        >CONTaCT</a>
+        <a class="nav-item nav-link nav-link-resume" href="#resume"
+        data-toggle="collapse" data-target=".navbar-collapse.show"
+        >RESUME</a>
       </div>
     </nav>
 
@@ -87,6 +93,9 @@
     <!-- PROJECTS -->
     <div class="projects-container">
       <div class="projects" id="projects">
+        <div class="projects__text-heading row">
+          <h2>PROJECTS</h2>
+        </div>
         <div class="project-feature">
           <iframe id="feature" width="560" height="315" src="https://www.youtube.com/embed/ajb7leUoz1U" frameborder="0" allowfullscreen></iframe>
         </div>
@@ -163,7 +172,7 @@
     <!-- CONTACT -->
     <div class='social-container' id="social">
       <div class='social align-items-center'>
-        <div class="about__text-header row">
+        <div class="social__text-header row">
           <h2>CONTaCT</h2>
         </div>
         <div class='row'>

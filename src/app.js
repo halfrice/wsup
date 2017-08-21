@@ -31,8 +31,16 @@ $(document).ready(function() {
   // NAVBAR
   var navbar = $('.navbar');
   var lastScrollTop = 0;
+  var scrollDirty = false;
 
+  $('.projects__text-heading').hide();
   $(window).scroll(function(e) {
+    if (!scrollDirty) {
+      console.log('wtf');
+      $('.projects__text-heading').slideDown(500, function(e) {
+      });
+      scrollDirty = true;
+    }
     var scrollTop = $(this).scrollTop();
     if(scrollTop > lastScrollTop && !$('.navbar-collapse').hasClass('show') ) {
       navbar.addClass('navbar-scroll');
@@ -334,9 +342,10 @@ $(document).ready(function() {
 
     if (!e.hasClass('caret-collapsed')) {
       e.addClass('caret-collapsed');
-      eh2.animate({'margin-bottom': '21px'}, 500);
       // .css('margin-bottom','21px')
       $resume.slideDown('slow');
+      eh2.animate({'margin-bottom': '21px'}, 500);
+      $("html, body").animate({scrollTop: $('#resume').offset().top+20}, 500);
       // r.css('display', 'block');
     }
     else {

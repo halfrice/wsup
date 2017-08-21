@@ -269,10 +269,10 @@ SLIDER
   //   max-height: 90%;
   // }  
   @include mediaMaxWidth(734px) {
-    // max-height: 640px;
-    // height: 640px;
-    max-height: calc(100vh - 50px);
-    height: calc(100vh - 50px);
+    max-height: 640px;
+    height: 640px;
+    // max-height: calc(100vh - 50px);
+    // height: calc(100vh - 50px);
   }
 }
 .slider {
@@ -461,7 +461,7 @@ SLIDER
       }
 
       @include mediaMaxWidth(734px) {
-        font-size: 1.44rem;
+        font-size: 1.23rem;
         display: block;
       }
     }
@@ -704,16 +704,32 @@ PROJECTS
   height: 100%;
   background-color: #fff;
 
-  // h2 {
-  //   margin: 0px auto;
-  //   font-family: $halflife;
-  //   font-size: 1.61rem;
-  //   padding-top: 16px;
-  //   padding-bottom: 16px;
-  //   // margin-bottom: 2rem;
-  //   color: $color;
-  //   background-color: #000;
-  // }
+  &__text {
+    border: 1px solid red;
+    &-heading {
+      background: #000;
+      h2 {
+        margin: 0px auto;
+        font-family: $halflife;
+        font-size: 1.618rem;
+        padding-top: 18px;
+        padding-bottom: 12px;
+        // margin-bottom: 2rem;
+        color: $color;
+        background-color: #000;
+
+      }
+    }
+    @include mediaMaxWidth(734px) {
+      &-heading {
+        h2 {
+          padding-top: 15px;
+          padding-bottom: 19px;
+         font-size: 1.36rem;
+        }
+      }
+    }
+  }
 
   // &.animating {
   //   transition: transform 0.5s;
@@ -955,6 +971,12 @@ ABOUT
       margin: 0;
     }
   }
+
+  @include mediaMaxWidth(734px) {
+    h2 {
+      font-size: 1.36rem;
+    }
+  }
 }
 
 /*********************************************************************
@@ -982,6 +1004,12 @@ SOCIAL
     font-size: 1.618rem;
     margin-bottom: 21px;
     color: $color;
+  }
+
+  @include mediaMaxWidth(734px) {
+    h2 {
+      font-size: 1.36rem;
+    }
   }
 }
 .social ul {
@@ -1065,6 +1093,12 @@ RESUME
         -o-transform: rotate(90deg);
         transform: rotate(90deg); 
       }
+    }
+  }
+
+  @include mediaMaxWidth(734px) {
+    h2 {
+      font-size: 1.36rem;
     }
   }
 }
