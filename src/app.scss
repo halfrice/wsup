@@ -12,42 +12,14 @@
 }
 
 @font-face {
-  font-family: 'Amiri';
-  src: url('./fonts/Amiri-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Crimson Text';
-  src: url('./fonts/CrimsonText-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Exo 2';
-  src: url('./fonts/Exo2-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Gentium Basic', serif;
-  src: url('./fonts/GenBasR.ttf') format('truetype');
-}
-@font-face {
   font-family: 'Half-Life';
   src: url('./fonts/HalfLife.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Julius Sans One';
-  src: url('./fonts/JuliusSansOne-Regular.ttf') format('truetype');
-}
-@font-face {
   font-family: 'Lato';
   src: url('./fonts/Lato-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('./fonts/Montserrat-Regular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Muli';
-  src: url('./fonts/Muli-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Open Sans', sans-serif;
@@ -58,32 +30,14 @@
   src: url('./fonts/Oswald-Regular.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Ovo';
-  src: url('./fonts/Ovo-Regular.ttf') format('truetype');
-}
-@font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto-Regular.ttf') format('truetype');
 }
-@font-face {
-  font-family: 'Stint Ultra Expanded';
-  src: url('./fonts/StintUltraExpanded-Regular.ttf') format('truetype');
-}
-$amiri: 'Amiri';
-$chonburi: 'Chonburi';
-$crimson: 'Crimson Text';
-$exo: 'Exo 2';
-$gentium: 'Gentium Basic', serif;
 $halflife: 'Half-Life', Arial, sans-serif;
-$julius: 'Julius Sans One';
 $lato: 'Lato', Helvetica, Arial, sans-serif;
-$montserrat: 'Montserrat';
-$muli: 'Muli';
 $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 $oswald: 'Oswald';
-$ovo: 'Ovo';
 $roboto: 'Roboto';
-$stint: 'Stint Ultra Expanded';
 
 @mixin mediaMaxWidth($w) {
   @media (max-width: $w) {
@@ -134,7 +88,7 @@ $overlayColor: rgb(0,0,0);
 /*********************************************************************
 NAVBAR
 *********************************************************************/
-.navbar {
+:global .navbar {
   background: #000 !important;
   // height: 48px;
   // max-height: 48px;
@@ -1229,7 +1183,7 @@ RESUME
       }
 
       h1 {
-        font-family: $muli;
+        font-family: $roboto;
         letter-spacing: 0em;
         border: none; 
         font-size: 1.1em; 
@@ -1413,6 +1367,11 @@ FOOTER
       @include mediaMaxWidth(767px) {
         text-align: left;
       }
+    }
+
+
+    @include mediaMaxWidth(734px) {
+      display: block;
     }
   }
 }

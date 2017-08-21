@@ -1,14 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+// const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var isProd = process.env.NODE_ENV === 'production';
 var cssDev = ['style-loader','css-loader','sass-loader'];
-var cssProd = ExtractTextPlugin.extract({
-  fallback: 'style-loader',
-  use: ['css-loader','resolve-url-loader','sass-loader'],
-});
+var cssProd = ['style-loader','css-loader','sass-loader'];
+// var cssProd = ExtractTextPlugin.extract({
+//   fallback: 'style-loader',
+//   use: ['css-loader','resolve-url-loader','sass-loader'],
+// });
 var cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = {
@@ -61,11 +62,11 @@ module.exports = {
       hash: true,
       minify: { collapseWhitespace: true }
     }),
-    new ExtractTextPlugin({
-      filename: 'app.css',
-      allChunks: true,
-      disable: !isProd,
-    }),
+    // new ExtractTextPlugin({
+    //   filename: 'app.css',
+    //   allChunks: true,
+    //   disable: !isProd,
+    // }),
     new webpack.ProvidePlugin({
       p5: 'p5'
     }),
