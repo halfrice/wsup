@@ -24,9 +24,14 @@ const css = require('./app.scss');
 
 
 $(document).ready(function() {
-
   // GLOBAL
   var isMobile = false;
+  var winW = $(window).width();
+  var winH = $(window).height();
+  var projW = $('.project').width();
+  var projH = $('.project').height();
+  console.log(winW, winH);
+  console.log(projW, projH);
 
   // NAVBAR
   var navbar = $('.navbar');
@@ -36,7 +41,6 @@ $(document).ready(function() {
   $('.projects__text-heading').hide();
   $(window).scroll(function(e) {
     if (!scrollDirty) {
-      console.log('wtf');
       $('.projects__text-heading').slideDown(500, function(e) {
       });
       scrollDirty = true;
@@ -133,7 +137,6 @@ $(document).ready(function() {
       changeSlides();
     }, autoSlideDelay);
   };
-  
   autoSlide();
   
   function changeSlides(instant) {
@@ -247,40 +250,40 @@ $(document).ready(function() {
   var windowW = $(window).width();
   var displayRatio = videoW/videoH;
 
-
   function featureFitToWindow() {
     windowW = $(window).width();
     feature.attr('width', windowW);
     feature.attr('height', windowW/displayRatio);
     $('.project-feature').css('height', feature.attr('height'));
   }
-  featureFitToWindow();
 
   function projectFitToWindow($e) {
-    var targetW = $e.parent().parent().width();
-    var targetH = $e.parent().parent().height();
+    console.log($e.parent().parent());
+    // var projectW = $e.parent().parent().width();
+    // var projectH = $e.parent().parent().height();
     var vidW = $e.attr('width');
     var vidH = $e.attr('height');
-    var displayRatio = vidW/vidH;
+    var vidDisplayRatio = vidW/vidH;
+    var projectW = $('.project').width();
+    var projectH = $('.project').height();
 
-    $e.attr('width', targetW);
-    $e.attr('height', targetH);
-    // $e.attr('height', targetW/displayRatio);
-    $e.parent().css('height', $e.attr('height')); 
-    // console.log(targetW, vidW, vidH);
-    // var $e.parent();
+    console.log('projects dimensions: ', projectW, projectH);
+    console.log('vid dimensions: ', vidW, vidH);
+    // console.log($e.parent());
+
+    $e.width(projectW-2);
+    $e.height(projectH);
+
+    // $e.css('width', projectW); 
+    // $e.css('height', projectH); 
   }
-  projectFitToWindow( $('#project-1') );
 
   $(window).on('resize', function() {
     featureFitToWindow();
     projectFitToWindow( $('#project-1') );
+    projectsSpacing(winW, winH); 
     // projectsSpacing(bootstrapViewportSize($(window).width())); 
-    projectsSpacing($(window).width(), $(window).height()); 
-    // projectsFitToWindow();
   });
-  // fit parent container to new window size; 
-
 
   // FEATURE PROJECT SPACING
   function bootstrapViewportSize(n) {
@@ -318,51 +321,43 @@ $(document).ready(function() {
     else if (width >= 1200) {
       for (var i = 0; i < numOfProjects; i++) {
         if ( (i+1) == numOfProjects ) {
-          console.log('setting .project-'+i+' padding-right: 0px');
+          // console.log('setting .project-'+i+' padding-right: 0px');
           $('.project-'+i).css('padding-right', '0px');
         }
         else {
-          console.log('setting .project-'+i+' padding-right: 2px');
+          // console.log('setting .project-'+i+' padding-right: 2px');
           $('.project-'+i).css('padding-right', '2px');
         }
       }
     }
   }
-  projectsSpacing($(window).width(), $(window).height()); 
 
-
+  $(window).on('load', function() {
+    featureFitToWindow();
+    projectFitToWindow( $('#project-1') );
+    projectsSpacing($(window).width(), $(window).height()); 
+  })
 
   // RESUME
   $resume = $('.resume');
   $(document).on('click', '.resume-title, .nav-link-resume', function(event) {
-    console.log('wtf');
     var e = $('.resume-title');
     var eh2 = e.find('h2');
     var r = $('.resume');
 
     if (!e.hasClass('caret-collapsed')) {
       e.addClass('caret-collapsed');
-      // .css('margin-bottom','21px')
       $resume.slideDown('slow');
       eh2.animate({'margin-bottom': '21px'}, 500);
       $("html, body").animate({scrollTop: $('#resume').offset().top+20}, 500);
-      // r.css('display', 'block');
     }
     else {
       e.removeClass('caret-collapsed');
-      // eh2.css('margin-bottom','0px')
       eh2.animate({'margin-bottom': '0px'}, 500);
       $resume.slideUp('slow');
-      // r.css('display', 'none');
     }
-    // $caretRight = $('<i class="fa fa-caret-right" aria-hidden="true"></i>');
   });
   $resume.hide();
-
-
-  function showResume() {
-    var r = $('.resume');
-  }
 
 
   /*
