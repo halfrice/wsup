@@ -26,12 +26,12 @@ const css = require('./app.scss');
 $(document).ready(function() {
   // GLOBAL
   var isMobile = false;
-  var winW = $(window).width();
-  var winH = $(window).height();
-  var projW = $('.project').width();
-  var projH = $('.project').height();
-  console.log(winW, winH);
-  console.log(projW, projH);
+  // var winW = $(window).width();
+  // var winH = $(window).height();
+  // var projW = $('.project').width();
+  // var projH = $('.project').height();
+  // console.log(winW, winH);
+  // console.log(projW, projH);
 
   // NAVBAR
   var navbar = $('.navbar');
@@ -88,47 +88,76 @@ $(document).ready(function() {
   }
   createBullets();
 
-  $('.slider-pagi__elem').hover(function() {
-    stylePagi($(this));
+
+
+
+  $(window).on('load', function() {
+    autoSlide();
+    featureFitToWindow();
+    projectFitToWindow( $('#project-1') );
+    projectsSpacing($(window).width(), $(window).height()); 
+    blurSlides();
   });
 
-  function stylePagi($element) {
-    var pagiActive = $element.hasClass('active');
-    var progAnimating = $element.find('div').hasClass('animating');
-    var $progress = $element.find('div').find('div');
-    if (pagiActive && progAnimating) {
+  $('.slider-pagi__elem').hover(function() {
+    // stylePagi($(this));
+  });
 
-    }
-    else if (pagiActive && !progAnimating) {
-      $progress.css('width', '100%');
-    }
-    else {
-      $progress.css('width', '0%');
-    }
-  }
-
-  function cleanProgress($element) {
-    $('.progressBar .progress').css('width', '0%');
+  function clearProgress($element) {
+    // console.log('clearing progress on: ', $element);
+    $element.find('.progress').css('width','0%');
+    // $('.progressBar .progress').css('width', '0%');
   }
   
   var progAnimating = false;
   function slideProgress(percent, time, $element) {
-    var $prog = $element.find('div');
+    var $prog = $element.find('.progress');
     var progBarWidth = percent * $element.width() / 100;
-    cleanProgress();
-    $prog.animate({ width: progBarWidth }, time, function() {
-      cleanProgress();
-    });
+    clearProgress($element);
     progAnimating = true;
-    // $prog.addClass('animating');
+    $prog.addClass('animating');
+    $prog.animate({ width: progBarWidth }, time, function() {
+      clearProgress($element);
+      stylePagi($element);
+    });
   }
-  slideProgress(100, autoSlideDelay, $('.progressBar').first());
+  // slideProgress(100, autoSlideDelay, $('.progressBar').first());
 
-  function manageControls() {
-    $(".slider-control").removeClass("inactive");
-    // if (!curSlide) $(".slider-control.left").addClass("inactive");
-    // if (curSlide === numOfSlides) $(".slider-control.right").addClass("inactive");
-  };
+  $(document).on("click", ".slider-pagi__elem", function() {
+    autoSlideDirty = true;
+    curSlide = $(this).data("page");
+    console.error(curSlide);
+    $('.progress').stop();
+    $('.progress').clearQueue();
+    changeSlides();
+    clearProgress($(this));
+    stylePagi($(this));
+    $('.progressBar').removeClass('animating');
+  });
+
+  function stylePagi($element) {
+    $('.slider-pagi__elem').find('.progress').css('width', '0%');
+    console.log('styling pagi element', $element);
+    var pagiActive = $element.hasClass('active');
+    var progAnimating = $element.find('.progressBar').hasClass('animating');
+    var $progress = $element.find('.progress');
+    // if (pagiActive && progAnimating) {
+
+    // }
+    // else if (pagiActive && !progAnimating) {
+    if (pagiActive) {
+      console.log('pagi is active');
+      // $('.progress').css('width', '100%');
+      $progress.css('width', '100%');
+    }
+    else {
+      console.log('clearing prog');
+      clearProgress($element);
+      $progress.css('width', '0%');
+    }
+  }
+  stylePagi( $('.slider-pagi__elem-0') );
+
   
   function autoSlide() {
     autoSlideTimeout = setTimeout(function() {
@@ -137,7 +166,6 @@ $(document).ready(function() {
       changeSlides();
     }, autoSlideDelay);
   };
-  autoSlide();
   
   function changeSlides(instant) {
     if (!instant) {
@@ -159,19 +187,22 @@ $(document).ready(function() {
     $slideBGs.css("transform", "translate3d("+ curSlide*50 +"%,0,0)");
     diff = 0;
 
-    // console.log("autoSlideDirty why is this running before haha wtff = " + autoSlideDirty);
-    if (!autoSlideDirty) {
-      $(".progressBar").removeClass("animating");
-      var $pb = $(".slider-pagi__elem-"+curSlide+" .progressBar"); 
-      $pb.addClass("animating");
-      autoSlide();
-      slideProgress(100, autoSlideDelay, $pb);
-    }
-    else {
-      cleanProgress($('.slider-pagi__elem-'+curSlide));
-      stylePagi($('.slider-pagi__elem-'+curSlide));
-    }
-    // if (!autoSlideDirty) autoSlide();
+    stylePagi($('.slider-pagi__elem-'+curSlide));
+    // console.log("autoSlideDirty = " + autoSlideDirty);
+    // if (!autoSlideDirty) {
+    //   // console.error('where I wanna be')
+    //   $(".progressBar").removeClass("animating");
+    //   var $pb = $(".slider-pagi__elem-"+curSlide+" .progressBar"); 
+    //   $pb.addClass("animating");
+    //   autoSlide();
+    //   // slideProgress(100, autoSlideDelay, $pb);
+    // }
+    // else {
+    //   // console.error('in mordor')
+    //   // clearProgress($('.slider-pagi__elem-'+curSlide));
+    //   // stylePagi($('.slider-pagi__elem-'+curSlide));
+    // }
+    if (!autoSlideDirty) autoSlide();
   }
 
   function navigateLeft() {
@@ -231,17 +262,28 @@ $(document).ready(function() {
       navigateRight();
     }
   });
-  
-  $(document).on("click", ".slider-pagi__elem", function() {
-    autoSlideDirty = true;
-    console.log("autoSlideDirty = " + autoSlideDirty);
-    curSlide = $(this).data("page");
-    $(this).find('div').find('div').stop();
-    cleanProgress($(this));
-    changeSlides();
-    stylePagi($(this));
-    $('.progressBar').removeClass('animating');
-  });
+
+  function blurSlides() {
+    for (var i = 0; i < numOfSlides+1; i++) {
+      var bg = $('.slide-'+i).find('.slide__text-bg');
+      var text = $('.slide-'+i).find('.slide__text'); 
+      // console.log(text.position(), text.width(), text.height() );
+      bg.css({
+        // 'top': text.offset().top + 'px',
+        'left': text.css('margin-left'),
+        'width': text.outerWidth(),
+        'height': text.outerHeight(),
+      });
+    }
+  }
+  // blurSlides();
+
+  function manageControls() {
+    $(".slider-control").removeClass("inactive");
+    // if (!curSlide) $(".slider-control.left").addClass("inactive");
+    // if (curSlide === numOfSlides) $(".slider-control.right").addClass("inactive");
+  };
+
 
   // FEATURE PROJECT
   var feature = $('#feature');
@@ -258,7 +300,7 @@ $(document).ready(function() {
   }
 
   function projectFitToWindow($e) {
-    console.log($e.parent().parent());
+    // console.log($e.parent().parent());
     // var projectW = $e.parent().parent().width();
     // var projectH = $e.parent().parent().height();
     var vidW = $e.attr('width');
@@ -267,8 +309,8 @@ $(document).ready(function() {
     var projectW = $('.project').width();
     var projectH = $('.project').height();
 
-    console.log('projects dimensions: ', projectW, projectH);
-    console.log('vid dimensions: ', vidW, vidH);
+    // console.log('projects dimensions: ', projectW, projectH);
+    // console.log('vid dimensions: ', vidW, vidH);
     // console.log($e.parent());
 
     $e.width(projectW-2);
@@ -332,11 +374,7 @@ $(document).ready(function() {
     }
   }
 
-  $(window).on('load', function() {
-    featureFitToWindow();
-    projectFitToWindow( $('#project-1') );
-    projectsSpacing($(window).width(), $(window).height()); 
-  })
+
 
   // RESUME
   $resume = $('.resume');
