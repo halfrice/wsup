@@ -38,7 +38,7 @@ $(document).ready(function() {
   var lastScrollTop = 0;
   var scrollDirty = false;
 
-  $('.projects__text-heading').hide();
+  // $('.projects__text-heading').hide();
   $(window).scroll(function(e) {
     if (!scrollDirty) {
       $('.projects__text-heading').slideDown(500, function(e) {
@@ -96,7 +96,7 @@ $(document).ready(function() {
     featureFitToWindow();
     projectFitToWindow( $('#project-1') );
     projectsSpacing($(window).width(), $(window).height()); 
-    blurSlides();
+    // blurSlides();
   });
 
   $('.slider-pagi__elem').hover(function() {
